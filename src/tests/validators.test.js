@@ -5,7 +5,7 @@ import {
   isObject,
   isString,
   emptyArr,
-} from '../validators'
+} from '../../validators'
 
 
 describe('should not be empty', () => {
