@@ -23,22 +23,23 @@
     "fantasy-land"
   ],
   "sideEffects": false,
-  "version": "0.1.4",
+  "version": "0.1.8",
   "license": "MIT",
   "scripts": {
     "predeploy": "npm-run-all docs babel git.add",
     "deploy": "git commit -m",
-    "postdeploy": "npm-run-all git.push publish",
+    "postdeploy": "npm-run-all git.push npm.publish",
     "docs": "jsdoc -c jsdoc.json",
-    "babel": "npx babel src --out-dir dist",
+    "babel": "npx babel dist --out-dir src",
     "git.add": "git add .",
     "git.commit": "git commit -m",
     "git.push": "git push --all",
-    "publish": "npm publish"
+    "npm.publish": "npm publish"
   },
   "files": [
     "docs",
-    "src"
+    "src",
+    "dist"
   ],
   "dependencies": {
     "graphql-request": "^2.0.0",
@@ -75,6 +76,6 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5"
   },
-  "module": "dist/index.js",
+  "module": "src/index.js",
   "main": "src/index.js"
 }

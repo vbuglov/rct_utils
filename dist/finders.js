@@ -1,13 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.updateValueInObjectfListOfObjects = exports.updateObjectKeys = exports.getArrayOfObjectsByKey = exports.getArrayOfValuesByKey = exports.getIdByKeyAndValueFromArray = exports.getObjectByKeyAndValueFromArray = void 0;
-
-var _ramda = require("ramda");
-
 /* eslint-disable max-len */
+import { lensProp, view, pickAll, values, is, keys, zipObj } from 'ramda'
 
 /**
   * Функция возвращает последний аналогичный объект по ключу и значению из
@@ -23,15 +15,16 @@ var _ramda = require("ramda");
   * @todo implement any action
   *
   */
-var getObjectByKeyAndValueFromArray = function getObjectByKeyAndValueFromArray(key, value, array) {
-  var sKey = (0, _ramda.lensProp)(key);
-  var searcheableObject = null;
-  array.forEach(function (object) {
-    var currentValue = (0, _ramda.view)(sKey, object);
-    if (currentValue === value) searcheableObject = object;
-  });
+export const getObjectByKeyAndValueFromArray = (key, value, array) => {
+  const sKey = lensProp(key);
+  let searcheableObject = null;
+  array.forEach((object) => {
+    const currentValue = view(sKey, object);
+    if (currentValue === value) searcheableObject = object
+  })
   return searcheableObject;
-};
+}
+
 /**
   * Функция возвращает последний аналогичный объект по ключу и значению из массива объектов. Функция подразумивает что в переданном списке будет один объект с переданным ключем и параметром.
   *
@@ -43,18 +36,16 @@ var getObjectByKeyAndValueFromArray = function getObjectByKeyAndValueFromArray(k
   * @returns {object} - искомый объект
   */
 
-
-exports.getObjectByKeyAndValueFromArray = getObjectByKeyAndValueFromArray;
-
-var getIdByKeyAndValueFromArray = function getIdByKeyAndValueFromArray(key, value, array) {
-  var sKey = (0, _ramda.lensProp)(key);
-  var id = null;
-  array.forEach(function (object, idx) {
-    var currentValue = (0, _ramda.view)(sKey, object);
-    if (currentValue === value) id = idx;
-  });
+export const getIdByKeyAndValueFromArray = (key, value, array) => {
+  const sKey = lensProp(key);
+  let id = null;
+  array.forEach((object, idx) => {
+    const currentValue = view(sKey, object);
+    if (currentValue === value) id = idx
+  })
   return id;
-};
+}
+
 /**
   * Функция возвращает массив значений из аналогичных объектов по названию ключа.
   *
@@ -64,52 +55,39 @@ var getIdByKeyAndValueFromArray = function getIdByKeyAndValueFromArray(key, valu
   * @param {string} key - некоторое значение ключа
   * @returns {array}
   */
-
-
-exports.getIdByKeyAndValueFromArray = getIdByKeyAndValueFromArray;
-
-var getArrayOfValuesByKey = function getArrayOfValuesByKey(array, key) {
-  if ((0, _ramda.is)(Array, array)) {
-    return array.map(function (el) {
-      var item = (0, _ramda.pickAll)([key], el);
-      return (0, _ramda.values)(item)[0];
-    });
-  } // eslint-disable-next-line no-console
-
-
+export const getArrayOfValuesByKey = (array, key) => {
+  if (is(Array, array)) {
+    return array.map((el) => {
+      const item = pickAll([key], el);
+      return values(item)[0];
+    })
+  }
+  // eslint-disable-next-line no-console
   console.error('function is getArrayOfValuesByKey error, your array is not Array');
   return null;
-};
+}
 
-exports.getArrayOfValuesByKey = getArrayOfValuesByKey;
-
-var getArrayOfObjectsByKey = function getArrayOfObjectsByKey(array, key) {
-  return array.map(function (el) {
+export const getArrayOfObjectsByKey = (array, key) => {
+  return array.map((el) => {
     if (el[key]) {
       return el;
     }
+    return null
+  }).filter((el) => el)
+}
 
-    return null;
-  }).filter(function (el) {
-    return el;
-  });
-};
-
-exports.getArrayOfObjectsByKey = getArrayOfObjectsByKey;
-
-var updateObjectKeys = function updateObjectKeys(object, updater) {
-  if ((0, _ramda.is)(Object, object)) {
-    var objKeys = (0, _ramda.keys)(object);
-    var objValues = (0, _ramda.values)(object);
-    var updatedKeys = objKeys.map(function (el) {
-      return updater(el);
-    });
-    return (0, _ramda.zipObj)(updatedKeys, objValues);
+export const updateObjectKeys = (object, updater) => {
+  if (is(Object, object)) {
+    const objKeys = keys(object);
+    const objValues = values(object);
+    const updatedKeys = objKeys.map((el) => updater(el));
+    return zipObj(updatedKeys, objValues)
   }
-
   console.error('variable is not a object');
   return null;
-};
+}
+
+
 /**
   * Складываем числа
   *
@@ -117,17 +95,17 @@ var updateObjectKeys = function updateObjectKeys(object, updater) {
   * @param {number} second - второе число
   * @returns {number}
   */
-
-
-exports.updateObjectKeys = updateObjectKeys;
-
-var updateValueInObjectfListOfObjects = function updateValueInObjectfListOfObjects(searchKeyName, searchKeyValue, updatebleValueKeyName, updatebleValueFunction, array) {
-  var objId = getIdByKeyAndValueFromArray(searchKeyName, searchKeyValue, array);
-  var updatedObj = array[objId];
+export const updateValueInObjectfListOfObjects = (
+  searchKeyName,
+  searchKeyValue,
+  updatebleValueKeyName,
+  updatebleValueFunction,
+  array
+) => {
+  const objId = getIdByKeyAndValueFromArray(searchKeyName, searchKeyValue, array);
+  const updatedObj = array[objId];
   updatedObj.updatebleValueKeyName = updatebleValueFunction(updatedObj.updatebleValueKeyName);
-  var newArray = array;
+  const newArray = array;
   newArray[objId] = updatedObj;
   return newArray;
-};
-
-exports.updateValueInObjectfListOfObjects = updateValueInObjectfListOfObjects;
+}
