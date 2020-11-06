@@ -91,7 +91,6 @@ describe('is empty list', () => {
   })
   test('for non empty list', () => {
     const arr = [1, 2, 3];
-
     expect(emptyArr(arr)).toBe(false)
   })
 })
