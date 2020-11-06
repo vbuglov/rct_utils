@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#resolveAdd">resolveAdd</a></li><li><a href="global.html#updateValueInObjectfListOfObjects">updateValueInObjectfListOfObjects</a></li></ul></div><div class="category"><h2>Finders</h2><h3>Global</h3><ul><li><a href="global.html#getArrayOfValuesByKey">getArrayOfValuesByKey</a></li><li><a href="global.html#getIdByKeyAndValueFromArray">getIdByKeyAndValueFromArray</a></li><li><a href="global.html#getObjectByKeyAndValueFromArray">getObjectByKeyAndValueFromArray</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#updateValueInObjectfListOfObjects">updateValueInObjectfListOfObjects</a></li></ul></div><div class="category"><h2>Finders</h2><h3>Global</h3><ul><li><a href="global.html#getArrayOfValuesByKey">getArrayOfValuesByKey</a></li><li><a href="global.html#getIdByKeyAndValueFromArray">getIdByKeyAndValueFromArray</a></li><li><a href="global.html#getObjectByKeyAndValueFromArray">getObjectByKeyAndValueFromArray</a></li></ul></div>
                 
             </nav>
         </div>
@@ -127,7 +127,7 @@ export const getObjectByKeyAndValueFromArray = (key, value, array) => {
   * @returns {object} - искомый объект
   */
 
-const getIdByKeyAndValueFromArray = (key, value, array) => {
+export const getIdByKeyAndValueFromArray = (key, value, array) => {
   const sKey = lensProp(key);
   let id = null;
   array.forEach((object, idx) => {

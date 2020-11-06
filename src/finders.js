@@ -36,7 +36,7 @@ export const getObjectByKeyAndValueFromArray = (key, value, array) => {
   * @returns {object} - искомый объект
   */
 
-const getIdByKeyAndValueFromArray = (key, value, array) => {
+export const getIdByKeyAndValueFromArray = (key, value, array) => {
   const sKey = lensProp(key);
   let id = null;
   array.forEach((object, idx) => {

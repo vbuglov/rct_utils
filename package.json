@@ -1,19 +1,54 @@
 {
+  "author": "Vyacheslav Buglov <v.a.buglov@gmail.com> (https://buglov.ru/)",
+  "contributors": [
+    {
+      "name": "Vyacheslav Buglov",
+      "email": "v.a.buglov@gmail.com",
+      "web": "https://buglov.ru/"
+    }
+  ],
   "name": "core_js_devbi",
+  "description": "A practical functional library for JavaScript programmers.",
+  "keywords": [
+    "core_js_devbi",
+    "functional",
+    "utils",
+    "utilities",
+    "toolkit",
+    "fp",
+    "tacit",
+    "point-free",
+    "curried",
+    "pure",
+    "fantasy-land"
+  ],
+  "sideEffects": false,
   "version": "0.1.4",
   "license": "MIT",
   "scripts": {
-    "docs": "jsdoc -c jsdoc.json"
+    "predeploy": "npm-run-all docs babel git.add",
+    "deploy": "git commit -m",
+    "postdeploy": "npm-run-all git.push publish",
+    "docs": "jsdoc -c jsdoc.json",
+    "babel": "npx babel src --out-dir dist",
+    "git.add": "git add .",
+    "git.commit": "git commit -m",
+    "git.push": "git push --all",
+    "publish": "npm publish"
   },
+  "files": [
+    "docs",
+    "src"
+  ],
   "dependencies": {
-    "ramda": "^0.27.1",
-    "store": "^2.0.12",
-    "js-cookie": "^2.2.1",
-    "styled-components": "^5.1.1",
     "graphql-request": "^2.0.0",
+    "js-cookie": "^2.2.1",
     "mobx-react": "^6.2.5",
     "mobx-react-lite": "^2.0.7",
-    "polished": "^3.6.5"
+    "polished": "^3.6.5",
+    "ramda": "^0.27.1",
+    "store": "^2.0.12",
+    "styled-components": "^5.1.1"
   },
   "repository": {
     "type": "git",
@@ -23,13 +58,23 @@
     "url": "https://github.com/vbuglov/coreJsDevbi/issues"
   },
   "homepage": "https://github.com/vbuglov/coreJsDevbi#readme",
-  "author": "vyacheslav buglov",
   "devDependencies": {
+    "babel-loader": "^8.1.0",
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-arrow-functions": "^7.12.1",
+    "@babel/plugin-transform-exponentiation-operator": "^7.12.1",
+    "@babel/plugin-transform-sticky-regex": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "babel-preset-env": "^1.7.0",
     "better-docs": "^2.3.2",
     "jest": "^26.1.0",
+    "jsdoc": "^3.6.6",
     "jsdoc-mermaid": "^1.0.0",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
-    "jsdoc": "^3.6.6"
-  }
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5"
+  },
+  "module": "dist/index.js",
+  "main": "src/index.js"
 }

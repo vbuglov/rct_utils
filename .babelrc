@@ -1,0 +1,10 @@
+{
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "@babel/plugin-transform-arrow-functions",
+    "@babel/plugin-transform-exponentiation-operator",
+    "@babel/plugin-transform-sticky-regex"
+  ]
+}
