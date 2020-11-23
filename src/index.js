@@ -3,29 +3,59 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "getObjectByKeyAndValueFromArray", {
+Object.defineProperty(exports, "arrayToObjsKV", {
   enumerable: true,
   get: function get() {
-    return _finders.getObjectByKeyAndValueFromArray;
+    return _getters.arrayToObjsKV;
   }
 });
-Object.defineProperty(exports, "getArrayOfValuesByKey", {
+Object.defineProperty(exports, "arrayToIdKV", {
   enumerable: true,
   get: function get() {
-    return _finders.getArrayOfValuesByKey;
+    return _getters.arrayToIdKV;
   }
 });
-Object.defineProperty(exports, "getArrayOfObjectsByKey", {
+Object.defineProperty(exports, "arrToVal", {
   enumerable: true,
   get: function get() {
-    return _finders.getArrayOfObjectsByKey;
+    return _getters.arrToVal;
+  }
+});
+Object.defineProperty(exports, "arrObjsToArrObjsByK", {
+  enumerable: true,
+  get: function get() {
+    return _getters.arrObjsToArrObjsByK;
+  }
+});
+Object.defineProperty(exports, "updateValueInObjectfListOfObjects", {
+  enumerable: true,
+  get: function get() {
+    return _updaters.updateValueInObjectfListOfObjects;
   }
 });
 Object.defineProperty(exports, "updateObjectKeys", {
   enumerable: true,
   get: function get() {
-    return _finders.updateObjectKeys;
+    return _updaters.updateObjectKeys;
+  }
+});
+Object.defineProperty(exports, "updObjK", {
+  enumerable: true,
+  get: function get() {
+    return _updaters2.updObjK;
+  }
+});
+Object.defineProperty(exports, "wrapNumMsk", {
+  enumerable: true,
+  get: function get() {
+    return _wrapNumMsk.wrapNumMsk;
   }
 });
 
-var _finders = require("./finders");
+var _getters = require("./arrayFunctions/getters");
+
+var _updaters = require("./arrayFunctions/updaters");
+
+var _updaters2 = require("./objectFunctions/updaters");
+
+var _wrapNumMsk = require("./wrapNumMsk");

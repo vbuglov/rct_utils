@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> arrayFunctions/updaters.js</title>
+  <title> string_parsers.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>arrayFunctions/updaters.js</h1>
+                    <h1>string_parsers.js</h1>
                 </header>
                 
 
@@ -89,42 +89,72 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
-import { values, is, keys, zipObj } from 'ramda'
-
-
-/**
-  * Функция возвращает обновленный массив объектов, в которых присутсвует заданный ключ. Поиск ведеться по массиву с обхектам
+            <pre class="prettyprint source linenums"><code>/**
+  * Функция возвращает строку где первый символ становится заглавным
   *
-  * @category ArrayUpdater
+  * @category String_Parser
   * @method
   * @since v0.1.0
-  * @param {array} array - название ключа из объекта
-  * @param {string} key - некоторое значение ключа
-  * @return {object[]}
+  * @param {string} array - название ключа из объекта
+  * @return {string}
   * 
   * @example
   *
-  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}]
-  *      arrayObjsToArrayObjs(newArray, "bar");      //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]
+  *      lwFirstLett('string') //=> 'String'
   */
-export const updateValueInObjectfListOfObjects = (
-  searchKeyName,
-  searchKeyValue,
-  updatebleValueKeyName,
-  updatebleValueFunction,
-  array
-) => {
-  const objId = getIdByKeyAndValueFromArray(searchKeyName, searchKeyValue, array);
-  const updatedObj = array[objId];
-  updatedObj.updatebleValueKeyName = updatebleValueFunction(updatedObj.updatebleValueKeyName);
-  const newArray = array;
-  newArray[objId] = updatedObj;
-  return newArray;
+export const captlzFrstLett = (string) => {
+  if (string) return string.charAt(0).toUpperCase() + string.slice(1);
+  else {
+    const error = `error by func capitalizeFirstLetter, ivalid string. string can't equal ${string}`
+    console.error(error)
+    return error;
+  }
+}
+
+/**
+  * Функция обрезает строку до необходимого количества символов, если в этом есть необходимость
+  *
+  * @category String_Parser
+  * @method
+  * @since v0.1.0
+  * @param {string} array - название ключа из объекта
+  * @param {number} key - некоторое значение ключа
+  * @return {string}
+  * 
+  * @example
+  *
+  *      lwFirstLett('String') //=> 'string'
+  */
+export const lwFirstLett = (string) => {
+  if (string &amp;&amp; string[0] &amp;&amp; type(string) === "String") return string[0].toLowerCase() + string.slice(1);
+  else {
+    const error = `error by func lowerFirstLetter, ivalid string. string can't equal ${string}`
+    console.error(error)
+    return error;
+  }
 }
 
 
-</code></pre>
+/**
+  * Функция обрезает строку до необходимого количества символов, если в этом есть необходимость
+  *
+  * @category String_Parser
+  * @method
+  * @since v0.1.0
+  * @param {string} array - название ключа из объекта
+  * @param {number} key - некоторое значение ключа
+  * @return {string}
+  * 
+  * @example
+  *
+  *      slicer()
+  */
+export const slicer = (string, length = 40) => {
+  if (string &amp;&amp; string.length > length) {
+    return string.substring(0, length) + "...";
+  }
+  return string;
+}</code></pre>
         </article>
     </section>
 

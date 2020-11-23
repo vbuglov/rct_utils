@@ -1,6 +1,13 @@
-/* eslint-disable max-len */
-import { values, is, keys, zipObj } from 'ramda'
+"use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.updateValueInObjectfListOfObjects = void 0;
+
+var _ramda = require("ramda");
+
+/* eslint-disable max-len */
 
 /**
   * Функция возвращает обновленный массив объектов, в которых присутсвует заданный ключ. Поиск ведеться по массиву с обхектам
@@ -17,19 +24,13 @@ import { values, is, keys, zipObj } from 'ramda'
   *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}]
   *      arrayObjsToArrayObjs(newArray, "bar");      //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]
   */
-export const updateValueInObjectfListOfObjects = (
-  searchKeyName,
-  searchKeyValue,
-  updatebleValueKeyName,
-  updatebleValueFunction,
-  array
-) => {
-  const objId = getIdByKeyAndValueFromArray(searchKeyName, searchKeyValue, array);
-  const updatedObj = array[objId];
+var updateValueInObjectfListOfObjects = function updateValueInObjectfListOfObjects(searchKeyName, searchKeyValue, updatebleValueKeyName, updatebleValueFunction, array) {
+  var objId = getIdByKeyAndValueFromArray(searchKeyName, searchKeyValue, array);
+  var updatedObj = array[objId];
   updatedObj.updatebleValueKeyName = updatebleValueFunction(updatedObj.updatebleValueKeyName);
-  const newArray = array;
+  var newArray = array;
   newArray[objId] = updatedObj;
   return newArray;
-}
+};
 
-
+exports.updateValueInObjectfListOfObjects = updateValueInObjectfListOfObjects;

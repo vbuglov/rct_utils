@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> arrayFunctions/updaters.js</title>
+  <title> functions.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayFinders</h2><h3>Global</h3><ul><li><a href="global.html#arrObjsToArrObjsByK">arrObjsToArrObjsByK</a></li><li><a href="global.html#arrToIdKV">arrToIdKV</a></li><li><a href="global.html#arrToObjKV">arrToObjKV</a></li><li><a href="global.html#arrToVal">arrToVal</a></li></ul></div><div class="category"><h2>ArrayUpdater</h2><h3>Global</h3><ul><li><a href="global.html#updateValueInObjectfListOfObjects">updateValueInObjectfListOfObjects</a></li><li><a href="global.html#updObjK">updObjK</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrstLett">captlzFrstLett</a></li><li><a href="global.html#lwFirstLett">lwFirstLett</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayFinders</h2><h3>Global</h3><ul><li><a href="global.html#arrObjsToArrObjsByK">arrObjsToArrObjsByK</a></li><li><a href="global.html#arrToIdKV">arrToIdKV</a></li><li><a href="global.html#arrToObjKV">arrToObjKV</a></li><li><a href="global.html#arrToVal">arrToVal</a></li></ul></div><div class="category"><h2>ArrayUpdater</h2><h3>Global</h3><ul><li><a href="global.html#updateValueInObjectfListOfObjects">updateValueInObjectfListOfObjects</a></li><li><a href="global.html#updObjK">updObjK</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Other</h2><h3>Global</h3><ul><li><a href="global.html#slicer">slicer</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrstLett">captlzFrstLett</a></li><li><a href="global.html#lwFirstLett">lwFirstLett</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div>
                 
             </nav>
         </div>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>arrayFunctions/updaters.js</h1>
+                    <h1>functions.js</h1>
                 </header>
                 
 
@@ -89,42 +89,69 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
-import { values, is, keys, zipObj } from 'ramda'
+            <pre class="prettyprint source linenums"><code>import { type } from 'ramda'
+
+
+/* eslint-disable */
+export const runAfter = (func, wait, immediate) => {
+  let timeout
+  return function () {
+    const context = this
+    const args = arguments
+    const later = function () {
+      timeout = null
+      if (!immediate) func.apply(context, args)
+    }
+    const callNow = immediate &amp;&amp; !timeout
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+    if (callNow) func.apply(context, args)
+  }
+}
+
+export const pipe = (x) => (...fns) => fns.reduce((r, fn) => fn(r), x)
+
+
+export const capitalizeFirstLetter = (string) => {
+  if (string) return string.charAt(0).toUpperCase() + string.slice(1);
+  else {
+    const error = `error by func capitalizeFirstLetter, ivalid string. string can't equal ${string}`
+    console.error(error)
+    return error;
+  }
+}
+
+export const lowerFirstLetter = (string) => {
+  if (string &amp;&amp; string[0] &amp;&amp; type(string) === "String") return string[0].toLowerCase() + string.slice(1);
+  else {
+    const error = `error by func lowerFirstLetter, ivalid string. string can't equal ${string}`
+    console.error(error)
+    return error;
+  }
+}
 
 
 /**
-  * Функция возвращает обновленный массив объектов, в которых присутсвует заданный ключ. Поиск ведеться по массиву с обхектам
+  * Функция обрезает строку до необходимого количества символов, если в этом есть необходимость
   *
-  * @category ArrayUpdater
+  * @category Other
   * @method
   * @since v0.1.0
-  * @param {array} array - название ключа из объекта
-  * @param {string} key - некоторое значение ключа
-  * @return {object[]}
+  * @param {string} array - название ключа из объекта
+  * @param {number} key - некоторое значение ключа
+  * @return {string}
   * 
   * @example
   *
   *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}]
   *      arrayObjsToArrayObjs(newArray, "bar");      //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]
   */
-export const updateValueInObjectfListOfObjects = (
-  searchKeyName,
-  searchKeyValue,
-  updatebleValueKeyName,
-  updatebleValueFunction,
-  array
-) => {
-  const objId = getIdByKeyAndValueFromArray(searchKeyName, searchKeyValue, array);
-  const updatedObj = array[objId];
-  updatedObj.updatebleValueKeyName = updatebleValueFunction(updatedObj.updatebleValueKeyName);
-  const newArray = array;
-  newArray[objId] = updatedObj;
-  return newArray;
-}
-
-
-</code></pre>
+export const slicer = (string, length = 40) => {
+  if (string &amp;&amp; string.length > length) {
+    return string.substring(0, length) + "...";
+  }
+  return string;
+}</code></pre>
         </article>
     </section>
 

@@ -4,13 +4,21 @@
  */
 
 export {
-  getArrayOfObjectsByKey,
-  getArrayOfValuesByKey,
-  getIdByKeyAndValueFromArray,
-  getObjectByKeyAndValueFromArray
-} from './arrayFunctions/getters'
+  arrayToObjsKV,
+  arrayToIdKV,
+  arrToVal,
+  arrObjsToArrObjsByK
+} from './arrayFunctions/getters';
 
 export {
   updateValueInObjectfListOfObjects,
   updateObjectKeys
-} from './arrayFunctions/updaters'
+} from './arrayFunctions/updaters';
+
+export {
+  updObjK
+} from './objectFunctions/updaters';
+
+export {
+  wrapNumMsk
+} from './wrapNumMsk';

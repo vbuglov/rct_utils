@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#resolveAdd">resolveAdd</a></li><li><a href="global.html#updateValueInObjectfListOfObjects">updateValueInObjectfListOfObjects</a></li></ul></div><div class="category"><h2>ArrayFinders</h2><h3>Global</h3><ul><li><a href="global.html#arrayObjsToArrayObjs">arrayObjsToArrayObjs</a></li><li><a href="global.html#arrayToIdKV">arrayToIdKV</a></li><li><a href="global.html#arrayToObjsKV">arrayToObjsKV</a></li><li><a href="global.html#arrayToValues">arrayToValues</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#from_req">from_req</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayFinders</h2><h3>Global</h3><ul><li><a href="global.html#arrObjsToArrObjsByK">arrObjsToArrObjsByK</a></li><li><a href="global.html#arrToIdKV">arrToIdKV</a></li><li><a href="global.html#arrToObjKV">arrToObjKV</a></li><li><a href="global.html#arrToVal">arrToVal</a></li></ul></div><div class="category"><h2>ArrayUpdater</h2><h3>Global</h3><ul><li><a href="global.html#updateValueInObjectfListOfObjects">updateValueInObjectfListOfObjects</a></li><li><a href="global.html#updObjK">updObjK</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrstLett">captlzFrstLett</a></li><li><a href="global.html#lwFirstLett">lwFirstLett</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div>
                 
             </nav>
         </div>
@@ -109,15 +109,19 @@
   * @example
   *
   *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}]
-  *      arrayToObjsKV("bar", 17, newArray);      //=> {foo: "hello", bar: 17, isCheck: true}
+  *      arrToObjKV("bar", 17, newArray);      //=> {foo: "hello", bar: 17, isCheck: true}
  */
-export const arrayToObjsKV = (key, value, array) => {
-  const sKey = lensProp(key);
+export const arrToObjKV = (key, value, array) => {
   let searcheableObject = null;
-  array.forEach((object) => {
-    const currentValue = view(sKey, object);
-    if (currentValue === value) searcheableObject = object
-  })
+  try {
+    const sKey = lensProp(key);
+    array.forEach((object) => {
+      const currentValue = view(sKey, object);
+      if (currentValue === value) searcheableObject = object
+    })
+  } catch (error) {
+
+  }
   return searcheableObject;
 }
 
@@ -137,13 +141,17 @@ export const arrayToObjsKV = (key, value, array) => {
   *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}]
   *      arrayToObjsKV("foo", "bye", newArray);      //=> 1
   */
-export const arrayToIdKV = (key, value, array) => {
-  const sKey = lensProp(key);
+export const arrToIdKV = (key, value, array) => {
   let id = null;
-  array.forEach((object, idx) => {
-    const currentValue = view(sKey, object);
-    if (currentValue === value) id = idx
-  })
+  try {
+    const sKey = lensProp(key);
+    array.forEach((object, idx) => {
+      const currentValue = view(sKey, object);
+      if (currentValue === value) id = idx
+    })
+  } catch (error) {
+
+  }
   return id;
 }
 
@@ -153,49 +161,53 @@ export const arrayToIdKV = (key, value, array) => {
   * @category ArrayFinders
   * @method
   * @since v0.1.0
-  * @param {array} array - название ключа из объекта
+  * @param {Array} array - массив в котором ведёться поиск
   * @param {string} key - некоторое значение ключа
-  * @return {array} - values[]
+  * @return {Array} - values[]
   * 
   * @example
   *
   *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}]
-  *      arrayToValues(newArray, "foo");      //=> ["hello", "bye"]
+  *      arrToVal(newArray, "foo");      //=> ["hello", "bye"]
   */
-export const arrayToValues = (array, key) => {
+export const arrToVal = (array, key) => {
   if (is(Array, array)) {
     return array.map((el) => {
       const item = pickAll([key], el);
       return values(item)[0];
     })
   }
-  // eslint-disable-next-line no-console
-  console.error('function is getArrayOfValuesByKey error, your array is not Array');
   return null;
 }
 
 /**
-  * Функция возвращает массив объектов, в которых присутсвует заданный ключ. Поиск ведеться по массиву с обхектам
+  * Функция возвращает массив объектов, в которых присутсвует заданный ключ. Поиск ведеться по массиву с объектами
   *
   * @category ArrayFinders
   * @method
   * @since v0.1.0
   * @param {array} array - название ключа из объекта
   * @param {string} key - некоторое значение ключа
-  * @return {object[]}
+  * @return {Object[]}
   * 
   * @example
   *
   *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}]
-  *      arrayObjsToArrayObjs(newArray, "bar");      //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]
+  *      arrObjsToArrObjsByK(newArray, "bar");      //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]
   */
-export const arrayObjsToArrayObjs = (array, key) => {
-  return array.map((el) => {
-    if (el[key]) {
-      return el;
-    }
-    return null
-  }).filter((el) => el)
+export const arrObjsToArrObjsByK = (array, key) => {
+  let answer = [];
+  try {
+    answer = array.map((el) => {
+      if (el[key]) {
+        return el;
+      }
+      return null
+    }).filter((el) => el)
+  } catch (error) {
+    console.log(error);
+  }
+  return answer
 }
 </code></pre>
         </article>

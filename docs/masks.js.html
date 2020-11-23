@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> arrayFunctions/updaters.js</title>
+  <title> masks.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>arrayFunctions/updaters.js</h1>
+                    <h1>masks.js</h1>
                 </header>
                 
 
@@ -89,41 +89,30 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
-import { values, is, keys, zipObj } from 'ramda'
-
-
-/**
-  * Функция возвращает обновленный массив объектов, в которых присутсвует заданный ключ. Поиск ведеться по массиву с обхектам
-  *
-  * @category ArrayUpdater
+            <pre class="prettyprint source linenums"><code>/**
+  * Функция преобразовывает строку, в строку, в которой содержаться только числа
+  * 
+  * @category Masks
   * @method
   * @since v0.1.0
-  * @param {array} array - название ключа из объекта
-  * @param {string} key - некоторое значение ключа
-  * @return {object[]}
+  * @param {string} value - строка которая будет оборачиваться в маску
+  * @return {string}
   * 
   * @example
   *
-  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}]
-  *      arrayObjsToArrayObjs(newArray, "bar");      //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]
+  *      const numStr = wrapNumMsk('123abc456'); //=> 123456
   */
-export const updateValueInObjectfListOfObjects = (
-  searchKeyName,
-  searchKeyValue,
-  updatebleValueKeyName,
-  updatebleValueFunction,
-  array
-) => {
-  const objId = getIdByKeyAndValueFromArray(searchKeyName, searchKeyValue, array);
-  const updatedObj = array[objId];
-  updatedObj.updatebleValueKeyName = updatebleValueFunction(updatedObj.updatebleValueKeyName);
-  const newArray = array;
-  newArray[objId] = updatedObj;
-  return newArray;
+export const wrapNumMsk = (value) => {
+  if (value === '') return '';
+  let str = '';
+  const num = /[0-9]/g;
+  if (value) str = value.match(num);
+  if (str) {
+    str = str.join('');
+    return str;
+  }
+  return '';
 }
-
-
 </code></pre>
         </article>
     </section>

@@ -1,16 +1,12 @@
 {
   "author": "Vyacheslav Buglov <v.a.buglov@gmail.com> (https://buglov.ru/)",
   "contributors": [
-    {
-      "name": "Vyacheslav Buglov",
-      "email": "v.a.buglov@gmail.com",
-      "web": "https://buglov.ru/"
-    }
+    "Vyacheslav Buglov <v.a.buglov@gmail.com> (https://buglov.ru/)"
   ],
-  "name": "core_js_devbi",
+  "name": "@dev-bi/rct_utils",
   "description": "A practical functional library for JavaScript programmers.",
   "keywords": [
-    "core_js_devbi",
+    "rct_utils",
     "functional",
     "utils",
     "utilities",
@@ -23,15 +19,15 @@
     "fantasy-land"
   ],
   "sideEffects": false,
-  "version": "0.1.8",
+  "version": "0.0.3",
   "license": "MIT",
   "scripts": {
-    "predeploy": "npm-run-all docs babel git.add",
+    "predeploy": "npm-run-all build:docs babel git.add",
     "deploy": "git commit -m",
     "postdeploy": "npm-run-all git.push npm.publish",
     "build:docs": "jsdoc -c jsdoc.json",
     "watch:doc-dist": "npx nodemon --exec 'jsdoc -c jsdoc.json' --watch dist",
-    "watch:doc-output": "npx livereload docs",
+    "watch:doc-output": "npx livereload build:docs",
     "watch:docs": "npm run watch:doc-output & npm run watch:doc-dist",
     "babel": "npx babel dist --out-dir src",
     "git.add": "git add .",
@@ -82,5 +78,8 @@
     "prettier": "^2.0.5"
   },
   "module": "src/index.js",
-  "main": "src/index.js"
+  "main": "src/index.js",
+  "directories": {
+    "doc": "docs"
+  }
 }
