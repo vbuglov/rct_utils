@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> arrayFunctions/updaters.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,58 +79,57 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>arrayFunctions/updaters.js</h1>
                 </header>
                 
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>Функциональное ядро</h1>
-<p><strong>Ядро содержит в себе функции по работе с данными, а именно:</strong></p>
-<ul>
-<li>Поиск по массиву</li>
-<li>Изменение элементов в массиве</li>
-<li>Работа с кэшем</li>
-<li>Работа с масками</li>
-<li>Билдер функций</li>
-</ul>
-<h2>Версия</h2>
-<p>0.1, разработка</p>
-<blockquote>
-<p>Для документации</p>
-<ul>
-<li><strong>jsdoc</strong>,</li>
-<li><strong>better-docs</strong></li>
-</ul>
-</blockquote>
-<h2>Тесты</h2>
-<p>Не проведены</p>
-<h2>Взаимодействие</h2>
-<p>Состояние: разработка\не запущен</p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
+import { values, is, keys, zipObj } from 'ramda'
+
+export const updateObjectKeys = (object, updater) => {
+  if (is(Object, object)) {
+    const objKeys = keys(object);
+    const objValues = values(object);
+    const updatedKeys = objKeys.map((el) => updater(el));
+    return zipObj(updatedKeys, objValues)
+  }
+  console.error('variable is not a object');
+  return null;
+}
+
+
+/**
+  * Складываем числа
+  *
+  * @param {number} first - первое число
+  * @param {number} second - второе число
+  * @returns {number}
+  */
+export const updateValueInObjectfListOfObjects = (
+  searchKeyName,
+  searchKeyValue,
+  updatebleValueKeyName,
+  updatebleValueFunction,
+  array
+) => {
+  const objId = getIdByKeyAndValueFromArray(searchKeyName, searchKeyValue, array);
+  const updatedObj = array[objId];
+  updatedObj.updatebleValueKeyName = updatebleValueFunction(updatedObj.updatebleValueKeyName);
+  const newArray = array;
+  newArray[objId] = updatedObj;
+  return newArray;
+}
+
+
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

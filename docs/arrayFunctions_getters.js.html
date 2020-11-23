@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> finders.js</title>
+  <title> arrayFunctions/getters.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#updateValueInObjectfListOfObjects">updateValueInObjectfListOfObjects</a></li></ul></div><div class="category"><h2>Finders</h2><h3>Global</h3><ul><li><a href="global.html#getArrayOfValuesByKey">getArrayOfValuesByKey</a></li><li><a href="global.html#getIdByKeyAndValueFromArray">getIdByKeyAndValueFromArray</a></li><li><a href="global.html#getObjectByKeyAndValueFromArray">getObjectByKeyAndValueFromArray</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#resolveAdd">resolveAdd</a></li><li><a href="global.html#updateValueInObjectfListOfObjects">updateValueInObjectfListOfObjects</a></li></ul></div><div class="category"><h2>ArrayFinders</h2><h3>Global</h3><ul><li><a href="global.html#arrayObjsToArrayObjs">arrayObjsToArrayObjs</a></li><li><a href="global.html#arrayToIdKV">arrayToIdKV</a></li><li><a href="global.html#arrayToObjsKV">arrayToObjsKV</a></li><li><a href="global.html#arrayToValues">arrayToValues</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#from_req">from_req</a></li></ul></div>
                 
             </nav>
         </div>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>finders.js</h1>
+                    <h1>arrayFunctions/getters.js</h1>
                 </header>
                 
 
@@ -89,24 +89,29 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
-import { lensProp, view, pickAll, values, is, keys, zipObj } from 'ramda'
+            <pre class="prettyprint source linenums"><code>import { lensProp, view, pickAll, values, is } from 'ramda'
+
 
 /**
   * Функция возвращает последний аналогичный объект по ключу и значению из
   * массива объектов. Функция подразумивает что в переданном списке будет один 
   * объект с переданным ключем и параметром.
   *
-  * @category Finders
+  * @category ArrayFinders
   * @method
+  * @since v0.1.0
   * @param {string} key - название ключа из объекта
   * @param {any} value - некоторое значение ключа
-  * @param {array} array - массив в котором ведеться поиск
-  * @returns {object} - искомый объект
+  * @param {object[]} array - массив из объектов в котором ведеться поиск
+  * @return {object}
   * @todo implement any action
   *
-  */
-export const getObjectByKeyAndValueFromArray = (key, value, array) => {
+  * @example
+  *
+  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}]
+  *      arrayToObjsKV("bar", 17, newArray);      //=> {foo: "hello", bar: 17, isCheck: true}
+ */
+export const arrayToObjsKV = (key, value, array) => {
   const sKey = lensProp(key);
   let searcheableObject = null;
   array.forEach((object) => {
@@ -117,17 +122,22 @@ export const getObjectByKeyAndValueFromArray = (key, value, array) => {
 }
 
 /**
-  * Функция возвращает последний аналогичный объект по ключу и значению из массива объектов. Функция подразумивает что в переданном списке будет один объект с переданным ключем и параметром.
+  * Функция возвращает номер объекта в массиве
   *
-  * @category Finders
+  * @category ArrayFinders
   * @method
+  * @since v0.1.0
   * @param {string} key - название ключа из объекта
   * @param {any} value - некоторое значение ключа
-  * @param {array} array - массив в котором ведеться поиск
-  * @returns {object} - искомый объект
+  * @param {object[]} array - массив из объектов в котором ведеться поиск
+  * @return {number} - порядковый номер объекта в массиве
+  * 
+  * @example
+  *
+  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}]
+  *      arrayToObjsKV("foo", "bye", newArray);      //=> 1
   */
-
-export const getIdByKeyAndValueFromArray = (key, value, array) => {
+export const arrayToIdKV = (key, value, array) => {
   const sKey = lensProp(key);
   let id = null;
   array.forEach((object, idx) => {
@@ -138,15 +148,21 @@ export const getIdByKeyAndValueFromArray = (key, value, array) => {
 }
 
 /**
-  * Функция возвращает массив значений из аналогичных объектов по названию ключа.
+  * Функция возвращает массив значений ключей из аналогичных объектов по названию ключа.
   *
-  * @category Finders
+  * @category ArrayFinders
   * @method
+  * @since v0.1.0
   * @param {array} array - название ключа из объекта
   * @param {string} key - некоторое значение ключа
-  * @returns {array}
+  * @return {array} - values[]
+  * 
+  * @example
+  *
+  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}]
+  *      arrayToValues(newArray, "foo");      //=> ["hello", "bye"]
   */
-export const getArrayOfValuesByKey = (array, key) => {
+export const arrayToValues = (array, key) => {
   if (is(Array, array)) {
     return array.map((el) => {
       const item = pickAll([key], el);
@@ -158,47 +174,28 @@ export const getArrayOfValuesByKey = (array, key) => {
   return null;
 }
 
-export const getArrayOfObjectsByKey = (array, key) => {
+/**
+  * Функция возвращает массив объектов, в которых присутсвует заданный ключ. Поиск ведеться по массиву с обхектам
+  *
+  * @category ArrayFinders
+  * @method
+  * @since v0.1.0
+  * @param {array} array - название ключа из объекта
+  * @param {string} key - некоторое значение ключа
+  * @return {object[]}
+  * 
+  * @example
+  *
+  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}]
+  *      arrayObjsToArrayObjs(newArray, "bar");      //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]
+  */
+export const arrayObjsToArrayObjs = (array, key) => {
   return array.map((el) => {
     if (el[key]) {
       return el;
     }
     return null
   }).filter((el) => el)
-}
-
-export const updateObjectKeys = (object, updater) => {
-  if (is(Object, object)) {
-    const objKeys = keys(object);
-    const objValues = values(object);
-    const updatedKeys = objKeys.map((el) => updater(el));
-    return zipObj(updatedKeys, objValues)
-  }
-  console.error('variable is not a object');
-  return null;
-}
-
-
-/**
-  * Складываем числа
-  *
-  * @param {number} first - первое число
-  * @param {number} second - второе число
-  * @returns {number}
-  */
-export const updateValueInObjectfListOfObjects = (
-  searchKeyName,
-  searchKeyValue,
-  updatebleValueKeyName,
-  updatebleValueFunction,
-  array
-) => {
-  const objId = getIdByKeyAndValueFromArray(searchKeyName, searchKeyValue, array);
-  const updatedObj = array[objId];
-  updatedObj.updatebleValueKeyName = updatebleValueFunction(updatedObj.updatebleValueKeyName);
-  const newArray = array;
-  newArray[objId] = updatedObj;
-  return newArray;
 }
 </code></pre>
         </article>

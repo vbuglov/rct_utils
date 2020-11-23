@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> cache_store.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,58 +79,72 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>cache_store.js</h1>
                 </header>
                 
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>Функциональное ядро</h1>
-<p><strong>Ядро содержит в себе функции по работе с данными, а именно:</strong></p>
-<ul>
-<li>Поиск по массиву</li>
-<li>Изменение элементов в массиве</li>
-<li>Работа с кэшем</li>
-<li>Работа с масками</li>
-<li>Билдер функций</li>
-</ul>
-<h2>Версия</h2>
-<p>0.1, разработка</p>
-<blockquote>
-<p>Для документации</p>
-<ul>
-<li><strong>jsdoc</strong>,</li>
-<li><strong>better-docs</strong></li>
-</ul>
-</blockquote>
-<h2>Тесты</h2>
-<p>Не проведены</p>
-<h2>Взаимодействие</h2>
-<p>Состояние: разработка\не запущен</p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>import store from 'store'
+import Cookies from 'js-cookie'
+import { path } from 'ramda'
+
+/* eslint-disable */
+const has_key = (cookie, key) => {
+  return new RegExp(
+    '(?:^|;\\s*)' + escape(key).replace(/[\-\.\+\*]/g, '\\$&amp;') + '\\s*\\=',
+  ).test(cookie)
+}
+
+/**
+  * Функция возвращает массив объектов, в которых присутсвует заданный ключ. Поиск ведеться по массиву с обхектам
+  *
+  * @category Store
+  * @method
+  * @since v0.1.0
+  * @param {array} array - название ключа из объекта
+  * @param {string} key - некоторое значение ключа
+  * @return {object[]}
+  * 
+  * @example
+  *
+  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}]
+  *      arrayObjsToArrayObjs(newArray, "bar");      //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]
+  */
+const from_req = (req, key) => {
+  const cookie = path(['headers', 'cookie'], req)
+  if (!cookie || !key || !has_key(cookie, key)) {
+    return null
+  }
+  const regexpStr =
+    '(?:^|.*;\\s*)' +
+    escape(key).replace(/[\-\.\+\*]/g, '\\$&amp;') +
+    '\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*'
+  return unescape(cookie.replace(new RegExp(regexpStr), '$1'))
+}
+/* eslint-enable */
+
+const CacheStore = {
+  get: (value, optional) => store.get(value, optional),
+  set: (key, value) => store.set(key, value),
+  remove: (key) => store.remove(key),
+  clearAll: () => store.clearAll(),
+  cookie: {
+    from_req: (req, key) => from_req(req, key),
+    set: (key, val, opt = {}) => Cookies.set(key, val, opt),
+    get: (key) => Cookies.get(key),
+    remove: (key) => Cookies.remove(key),
+  },
+}
+
+export default CacheStore
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
