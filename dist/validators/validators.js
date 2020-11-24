@@ -17,14 +17,7 @@ import {
   merge
 } from 'ramda'
 
-export const isNaN = is(NaN)
-export const isObject = is(Object)
-export const isArr = is(Array)
-export const isString = is(String)
-export const isNumber = both(is(Number), complement(equals(NaN)));
 
-export const isInArr = curry((el, arr) => arr.findIndex((arrEl) => arrEl === el) >= 0);
-export const hasVal = curry((obj, el) => !!obj[el] && !!obj[el].value);
 export const notEmpty = compose(not, isEmpty)
 export const notNaN = compose(not, isNaN)
 export const notNil = compose(not, isNil)
@@ -36,7 +29,7 @@ export const checkElementInArr = curry((arr, el) => both(isArr, isInArr(el))(arr
 export const rejectEmptyNames = reject((el) => isNil(el) || isNil(el.name));
 export const isKeyExist = (key, obj) => !!obj[key]
 export const isKeysExist = (keys, obj) =>
-keys.reduce((res, key) => isKeyExist(key, obj) && res, true)
+  keys.reduce((res, key) => isKeyExist(key, obj) && res, true)
 
 export const emptyArr = both(isArr, isEmpty)
 
@@ -52,21 +45,21 @@ export const validator = (obj, params) => {
     return val ? merge(acc, { [el.name]: val }) : acc
   }, {})
 
- const resolver = cond([
-   [equals('nonNullable'), validateNonNullable],
-   [equals('types'), validateTypes],
-   [equals('length'), ({ length, name }) => validateLength(obj[name], length)],
-   [T, () => obj]
- ])
+  const resolver = cond([
+    [equals('nonNullable'), validateNonNullable],
+    [equals('types'), validateTypes],
+    [equals('length'), ({ length, name }) => validateLength(obj[name], length)],
+    [T, () => obj]
+  ])
 
- return Object.keys(params).reduce(resolveAdd(resolver), {})
+  return Object.keys(params).reduce(resolveAdd(resolver), {})
 }
 
 export const validateType = (val, type) => cond([
-    [equals('number'), () => !isNumber(val) && 'числовое значение'],
-    [equals('object'), () => !isObject && 'не верное значение'],
-    [T, always(false)]
-  ])(type)
+  [equals('number'), () => !isNumber(val) && 'числовое значение'],
+  [equals('object'), () => !isObject && 'не верное значение'],
+  [T, always(false)]
+])(type)
 
 export const validateLength = (val, length) => cond([
   [isKeyExist('equals'), ({ equals }) => val.length !== equals && `${equals} симв.`],

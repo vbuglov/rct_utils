@@ -51,6 +51,42 @@ Object.defineProperty(exports, "wrapNumMsk", {
     return _wrapNumMsk.wrapNumMsk;
   }
 });
+Object.defineProperty(exports, "hasVal", {
+  enumerable: true,
+  get: function get() {
+    return _wrapNumMsk.hasVal;
+  }
+});
+Object.defineProperty(exports, "isArr", {
+  enumerable: true,
+  get: function get() {
+    return _wrapNumMsk.isArr;
+  }
+});
+Object.defineProperty(exports, "isInArr", {
+  enumerable: true,
+  get: function get() {
+    return _wrapNumMsk.isInArr;
+  }
+});
+Object.defineProperty(exports, "isNumber", {
+  enumerable: true,
+  get: function get() {
+    return _wrapNumMsk.isNumber;
+  }
+});
+Object.defineProperty(exports, "isObject", {
+  enumerable: true,
+  get: function get() {
+    return _wrapNumMsk.isObject;
+  }
+});
+Object.defineProperty(exports, "isString", {
+  enumerable: true,
+  get: function get() {
+    return _wrapNumMsk.isString;
+  }
+});
 
 var _getters = require("./arrayFunctions/getters");
 

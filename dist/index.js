@@ -22,3 +22,12 @@ export {
 export {
   wrapNumMsk
 } from './wrapNumMsk';
+
+export {
+  hasVal,
+  isArr,
+  isInArr,
+  isNumber,
+  isObject,
+  isString
+} from './wrapNumMsk';
