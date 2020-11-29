@@ -23,13 +23,6 @@ export {
 
 export {
   wrapNumMsk
-} from './wrapNumMsk';
+} from './masks';
 
-export {
-  hasVal,
-  isArr,
-  isInArr,
-  isNumber,
-  isObject,
-  isString
-} from './wrapNumMsk';
+export * from './validators';

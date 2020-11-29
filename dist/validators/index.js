@@ -1,0 +1,6 @@
+export * from './hasVal'
+export * from './isArr'
+export * from './isInArr'
+export * from './isNumber'
+export * from './isObject'
+export * from './isString'
