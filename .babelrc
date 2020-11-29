@@ -19,7 +19,9 @@
     [
       "@babel/plugin-transform-modules-commonjs",
       {
-        "allowTopLevelThis": true
+        "allowTopLevelThis": true,
+        "loose": true,
+        "lazy": true
       }
     ]
   ]

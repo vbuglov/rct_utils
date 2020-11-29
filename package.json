@@ -19,7 +19,7 @@
     "fantasy-land"
   ],
   "sideEffects": false,
-  "version": "0.0.4",
+  "version": "0.0.6",
   "license": "MIT",
   "scripts": {
     "predeploy": "npm-run-all build:docs babel git.add",
@@ -29,7 +29,7 @@
     "watch:doc-dist": "npx nodemon --exec 'jsdoc -c jsdoc.json' --watch dist",
     "watch:doc-output": "npx livereload build:docs",
     "watch:docs": "npm run watch:doc-output & npm run watch:doc-dist",
-    "babel": "npx babel dist --out-file src/index.js",
+    "babel": "npx babel dist --out-dir src",
     "git.add": "git add .",
     "git.commit": "git commit -m",
     "git.push": "git push --all",
@@ -41,6 +41,7 @@
     "dist"
   ],
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "graphql-request": "^2.0.0",
     "js-cookie": "^2.2.1",
     "mobx-react": "^6.2.5",
