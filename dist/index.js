@@ -3,12 +3,14 @@
  * TODO add todo
  */
 
-export {
+import {
   arrayToObjsKV,
   arrayToIdKV,
   arrToVal,
   arrObjsToArrObjsByK
 } from './arrayFunctions/getters';
+
+export { arrayToObjsKV, arrayToIdKV, arrToVal, arrObjsToArrObjsByK }
 
 export {
   updateValueInObjectfListOfObjects,

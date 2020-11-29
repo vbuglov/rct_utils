@@ -24,12 +24,12 @@
   "scripts": {
     "predeploy": "npm-run-all build:docs babel git.add",
     "deploy": "git commit -m",
-    "postdeploy": "npm-run-all git.push publish",
+    "postdeploy": "npm-run-all git.push npm.publish",
     "build:docs": "jsdoc -c jsdoc.json",
     "watch:doc-dist": "npx nodemon --exec 'jsdoc -c jsdoc.json' --watch dist",
     "watch:doc-output": "npx livereload build:docs",
     "watch:docs": "npm run watch:doc-output & npm run watch:doc-dist",
-    "babel": "npx babel dist --out-dir src",
+    "babel": "npx babel dist --out-file src/index.js",
     "git.add": "git add .",
     "git.commit": "git commit -m",
     "git.push": "git push --all",
@@ -77,8 +77,9 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5"
   },
-  "module": "src/index.js",
-  "main": "src/index.js",
+  "module": "src/index",
+  "main": "src/index",
+  "typings": "dist/index",
   "directories": {
     "doc": "docs"
   }
