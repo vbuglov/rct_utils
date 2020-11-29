@@ -1,4 +1,4 @@
-import { is, both, complement } from 'ramda'
+import { is, both, complement, equals } from 'ramda'
 /**
   * Функция проверяет число ли переменная.
   * @category validators

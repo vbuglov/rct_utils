@@ -26,5 +26,5 @@ function _ramda() {
   *      isArr(12);      //=> false
   *      isArr([]);      //=> true
  */
-const isNumber = (0, _ramda().both)((0, _ramda().is)(Number), (0, _ramda().complement)(equals(NaN)));
+const isNumber = (0, _ramda().both)((0, _ramda().is)(Number), (0, _ramda().complement)((0, _ramda().equals)(NaN)));
 exports.isNumber = isNumber;
