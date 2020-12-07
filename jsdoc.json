@@ -1,0 +1,46 @@
+{
+  "recurseDepth": 10,
+  "sourceType": "module",
+  "tags": {
+    "allowUnknownTags": true,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "jsdoc-mermaid",
+    "node_modules/better-docs/category",
+    "node_modules/better-docs/typedef-import",
+    "node_modules/better-docs/typescript"
+  ],
+  "source": {
+    "include": "./dist",
+    "includePattern": "\\.(jsx|js|ts|tsx)$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "opts": {
+    "template": "node_modules/better-docs",
+    "encoding": "utf8",
+    "destination": "docs/",
+    "recurse": true,
+    "verbose": true,
+    "readme": "Readme.md"
+  },
+  "templates": {
+    "search": true
+  },
+  "better-docs": {
+    "name": "devBi Js Documentation",
+    "title": "Hello Bro!",
+    "trackingCode": "tracking-code-which-will-go-to-the-HEAD",
+    "hideGenerator": false,
+    "navLinks": [
+      {
+        "label": "Github",
+        "href": "https://github.com/SoftwareBrothers/admin-bro"
+      },
+      {
+        "label": "Example Application",
+        "href": "https://admin-bro-example-app.herokuapp.com/admin"
+      }
+    ]
+  }
+}

@@ -1,1 +1,1 @@
-export declare const nilOrEmpty: import('ramda').Pred;
+export declare const nilOrEmpty: import("ramda").Pred;

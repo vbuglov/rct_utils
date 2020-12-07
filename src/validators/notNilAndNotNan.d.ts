@@ -1,1 +1,1 @@
-export declare const notNilAndNotNan: import('ramda').Pred;
+export declare const notNilAndNotNan: import("ramda").Pred;

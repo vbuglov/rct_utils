@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "module": "commonjs",
     "declaration": true,
-    "outDir": "./lib",
-    "strict": true
+    "outDir": "./src",
+    "strict": true,
+    "allowJs": true
   },
   "include": [
-    "src"
+    "dist/index.ts"
   ],
   "exclude": [
     "node_modules",

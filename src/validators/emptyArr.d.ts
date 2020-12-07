@@ -1,1 +1,1 @@
-export declare const emptyArr: import('ramda').Pred;
+export declare const emptyArr: import("ramda").Pred;
