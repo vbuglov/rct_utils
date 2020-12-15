@@ -10,10 +10,9 @@
   * @return {Object[]}
   * @example
   *
-  *   const newArray =
-  *   [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}]
-  *   arrObjsToArrObjsByK(newArray, "bar");
-  * //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]
+  *   const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}];
+  *   finderList(newArray, "bar");
+  *   //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}];
   */
 declare const finderList: (array: any[], key: string) => any[];
 export { finderList };

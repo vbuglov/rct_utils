@@ -70,7 +70,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#openGqlErrNotifi">openGqlErrNotifi</a></li><li><a href="global.html#openNotifi">openNotifi</a></li><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayOfObjects</h2><h3>Global</h3><ul><li><a href="global.html#finderList">finderList</a></li><li><a href="global.html#findValues">findValues</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrst">captlzFrst</a></li><li><a href="global.html#lowFirst">lowFirst</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div><div class="category"><h2>validators</h2><h3>Global</h3><ul><li><a href="global.html#hasVal">hasVal</a></li><li><a href="global.html#isArr">isArr</a></li><li><a href="global.html#isInArr">isInArr</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isString">isString</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#openGqlErrNotifi">openGqlErrNotifi</a></li><li><a href="global.html#openNotifi">openNotifi</a></li><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayOfObjects</h2><h3>Global</h3><ul><li><a href="global.html#finderList">finderList</a></li><li><a href="global.html#findValues">findValues</a></li><li><a href="global.html#paths">paths</a></li><li><a href="global.html#pUpdate">pUpdate</a></li><li><a href="global.html#update">update</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrst">captlzFrst</a></li><li><a href="global.html#lowFirst">lowFirst</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div><div class="category"><h2>validators</h2><h3>Global</h3><ul><li><a href="global.html#hasVal">hasVal</a></li><li><a href="global.html#isArr">isArr</a></li><li><a href="global.html#isInArr">isInArr</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isString">isString</a></li></ul></div>
                 
             </nav>
         </div>
@@ -107,26 +107,19 @@
         <article><h1>Функциональное ядро</h1>
 <p><strong>Библиотека резделена на модули:</strong></p>
 <ul>
-<li>Поиск по массиву</li>
+<li>AOO - функции работы с коллекцией array of objects</li>
 <li>Изменение элементов в массиве</li>
-<li>Работа с кэшем</li>
 <li>Работа с масками</li>
-<li>Билдер функций</li>
+<li>Faker данных</li>
 </ul>
-<h2>Версия</h2>
-<p>0.0.12, разработка</p>
-<blockquote>
-<p>Для документации</p>
-<ul>
-<li><strong>jsdoc</strong>,</li>
-<li><strong>better-docs</strong></li>
-</ul>
-</blockquote>
 <h2>Тесты</h2>
-<p>Не проведены</p>
+<p>Библиотека частично покрыта тестами. Использованы следующие библиотеки</p>
+<ul>
+<li>jest</li>
+</ul>
 <h2>Взаимодействие</h2>
-<p>Состояние: разработка\не запущен</p>
-<h2>Правила</h2>
+<p>Состояние: тесты проведены</p>
+<h2>Правила (пока не работает)</h2>
 <ul>
 <li>каждая функция имеет последним параметром errorMod. Default value of errorMod = false. If errorMod = true. Мы получаем на значение в виде:
 {
@@ -144,6 +137,7 @@ answer: &quot;<em>value of return</em>&quot;
 <h3>Дополнительно</h3>
 <ul>
 <li>Библиотека написана на языке typescript</li>
+<li>Создание документации build:docs</li>
 </ul></article>
     </section>
 

@@ -1,0 +1,2 @@
+https://github.com/lxjwlt/data-seed
+https://github.com/Marak/Faker.js#readme

@@ -4,14 +4,14 @@
     "Vyacheslav Buglov <v.a.buglov@gmail.com> (https://buglov.ru/)"
   ],
   "name": "@dev-bi/rct_utils",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "src/index.js",
-  "types": "src",
+  "types": "src/index.d.ts",
   "scripts": {
     "prepare": "",
     "predeploy": "yarn jest && yarn build:docs && yarn tsc && yarn git.add",
     "deploy": "git commit -m",
-    "postdeploy": "git.push",
+    "postdeploy": "yarn git.push",
     "test": "jest",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
@@ -39,6 +39,7 @@
     "docs"
   ],
   "dependencies": {
+    "@types/faker": "^5.1.5",
     "@types/ramda": "^0.27.32",
     "ansi-styles": "^3.2.1",
     "argparse": "^1.0.10",
@@ -53,6 +54,7 @@
     "diff": "^4.0.2",
     "escape-string-regexp": "^1.0.5",
     "esprima": "^4.0.1",
+    "faker": "^5.1.0",
     "fs.realpath": "^1.0.0",
     "function-bind": "^1.1.1",
     "glob": "^7.1.6",

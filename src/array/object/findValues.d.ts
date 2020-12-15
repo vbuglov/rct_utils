@@ -10,8 +10,8 @@
   *
   * @example
   *
-  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}]
-  *      arrToVal(newArray, "foo");      //=> ["hello", "bye"]
+  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}];
+  *      findValues(newArray, "foo");      //=> ["hello", "bye"];
   */
 declare const findValues: (array: any[], key: string) => string[] | null;
 export { findValues };

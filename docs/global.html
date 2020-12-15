@@ -70,7 +70,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#openGqlErrNotifi">openGqlErrNotifi</a></li><li><a href="global.html#openNotifi">openNotifi</a></li><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayOfObjects</h2><h3>Global</h3><ul><li><a href="global.html#finderList">finderList</a></li><li><a href="global.html#findValues">findValues</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrst">captlzFrst</a></li><li><a href="global.html#lowFirst">lowFirst</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div><div class="category"><h2>validators</h2><h3>Global</h3><ul><li><a href="global.html#hasVal">hasVal</a></li><li><a href="global.html#isArr">isArr</a></li><li><a href="global.html#isInArr">isInArr</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isString">isString</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#openGqlErrNotifi">openGqlErrNotifi</a></li><li><a href="global.html#openNotifi">openNotifi</a></li><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayOfObjects</h2><h3>Global</h3><ul><li><a href="global.html#finderList">finderList</a></li><li><a href="global.html#findValues">findValues</a></li><li><a href="global.html#paths">paths</a></li><li><a href="global.html#pUpdate">pUpdate</a></li><li><a href="global.html#update">update</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrst">captlzFrst</a></li><li><a href="global.html#lowFirst">lowFirst</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div><div class="category"><h2>validators</h2><h3>Global</h3><ul><li><a href="global.html#hasVal">hasVal</a></li><li><a href="global.html#isArr">isArr</a></li><li><a href="global.html#isInArr">isInArr</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isString">isString</a></li></ul></div>
                 
             </nav>
         </div>
@@ -649,7 +649,7 @@
         <p class="tag-source">
             <a href="array_object_finderList.ts.html" class="button">View Source</a>
             <span>
-                <a href="array_object_finderList.ts.html">array/object/finderList.ts</a>, <a href="array_object_finderList.ts.html#line21">line 21</a>
+                <a href="array_object_finderList.ts.html">array/object/finderList.ts</a>, <a href="array_object_finderList.ts.html#line20">line 20</a>
             </span>
         </p>
     
@@ -701,10 +701,9 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>const newArray =
-  [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}]
-  arrObjsToArrObjsByK(newArray, "bar");
-//=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}]</code></pre>
+        <pre class="prettyprint"><code>const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}];
+  finderList(newArray, "bar");
+  //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}];</code></pre>
     
 
 
@@ -912,8 +911,8 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}]
-     arrToVal(newArray, "foo");      //=> ["hello", "bye"]</code></pre>
+        <pre class="prettyprint"><code>const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}];
+     findValues(newArray, "foo");      //=> ["hello", "bye"];</code></pre>
     
 
 
@@ -2643,6 +2642,558 @@
 
 
     
+    <h4 class="name" id="paths">
+        <a class="href-link" href="#paths">#</a>
+        
+        <span class="code-name">
+            
+                paths<span class="signature">(collection, keys)</span><span class="type-signature"> &rarr; {any}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Функция возвращаем элемент по заданному пути
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>collection</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">коллекция в виде массива или объекта</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>keys</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Number</span>
+|
+
+<span class="param-type">iAooParam</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Путь по которому будет происходить поиск. Путь - массив если следующий шаг объект, то путь имя ключа объекта, либо массив [*String -> имя ключа объекта*, значение]</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>v0.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array_object_paths.ts.html" class="button">View Source</a>
+            <span>
+                <a href="array_object_paths.ts.html">array/object/paths.ts</a>, <a href="array_object_paths.ts.html#line55">line 55</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">any</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>const array = [
+ {
+   id: 2,
+   gnom: 222
+ },
+ {
+   id: 4,
+   gnom: {
+     c: [
+       { id: 1, c: 2 },
+       { id: 2, b: 2 },
+       { id: 4, v: 2 }
+     ],
+     a: 3
+   }
+ }
+];
+
+AOO.paths(array, [["id", 4], "name"]);
+//=> "23465-7870"
+
+const object = {
+ quantifying: {
+   Towels: [
+     { feed: {}, id: 1 },
+     { id: 2 },
+     { id: 3 },
+     { Chair: "Reyes.Lebsack@hotmail.com", Oklahoma: {}, id: 4 },
+     { utilize: {}, engage: "747-776-1611", id: 5 }
+   ],
+   Electronics: "239-934-8977 x1217",
+   Assurance: { Configurable: "607-385-4573 x0039" }
+ }
+};
+
+AOO.paths(object, ['quantifying', 'Towels', ['id', 4], 'Chair']);
+//=>  "Reyes.Lebsack@hotmail.com"
+  });
+});</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="pUpdate">
+        <a class="href-link" href="#pUpdate">#</a>
+        
+        <span class="code-name">
+            
+                pUpdate<span class="signature">(collection, keys, newData)</span><span class="type-signature"> &rarr; {Array|Object}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Функция возвращает обновленную коллекцию по переданному пути
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>collection</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">коллекция в виде массива или объекта</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>keys</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">путь по которому будет проиходить обновление. Путь массив если следующий шаг объект, то путь имя ключа объекта, либо массив [*String -> имя ключа объекта*, значение]</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>newData</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">новое значение</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>v0.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array_object_pUpdate.ts.html" class="button">View Source</a>
+            <span>
+                <a href="array_object_pUpdate.ts.html">array/object/pUpdate.ts</a>, <a href="array_object_pUpdate.ts.html#line83">line 83</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">Object</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>const object = {
+ quantifying: {
+   Towels: [
+     { feed: {}, id: 1 },
+     { id: 2 },
+     { id: 3 },
+     { Chair: "Reyes.Lebsack@hotmail.com", Oklahoma: {}, id: 4 },
+     { utilize: {}, engage: "747-776-1611", id: 5 }
+   ],
+   Electronics: "239-934-8977 x1217",
+   Assurance: { Configurable: "607-385-4573 x0039" }
+ }
+};
+
+AOO.pUpdate(object, ["quantifying", "Towels", ["id", 4], "Chair"], * "friend@gmail.com");
+ //=>
+  ({
+   quantifying: {
+     Towels: [
+       { feed: {}, id: 1 },
+       { id: 2 },
+       { id: 3 },
+       { Chair: "friend@gmail.com", Oklahoma: {}, id: 4 },
+       { utilize: {}, engage: "747-776-1611", id: 5 }
+     ],
+     Electronics: "239-934-8977 x1217",
+     Assurance: { Configurable: "607-385-4573 x0039" }
+   }
+ });
+
+const array = [
+ {
+   id: 2,
+   gnom: 222
+ },
+ {
+   id: 4,
+   gnom: {
+     c: [
+       { id: 1, c: 2 },
+       { id: 2, b: 2 },
+       { id: 4, v: 2 }
+     ],
+     a: 3
+   }
+ }
+];
+
+  * AOO.pUpdate(array, [["id", 4], "gnom", "c", ["id", 2], "b"], { c:  2, d: 3 });
+
+//=>
+ [
+   { id: 2, gnom: 222 },
+   {
+     id: 4,
+     gnom: {
+       c: [
+         { id: 1, c: 2 },
+         { id: 2, b: { c: 2, d: 3 } },
+         { id: 4, v: 2 }
+       ],
+       a: 3
+     }
+   }
+ ])
+};</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
     <h4 class="name" id="slicer">
         <a class="href-link" href="#slicer">#</a>
         
@@ -2840,6 +3391,257 @@
     
     
         <pre class="prettyprint"><code>slicer()</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="update">
+        <a class="href-link" href="#update">#</a>
+        
+        <span class="code-name">
+            
+                update<span class="signature">(aoo, param, obj)</span><span class="type-signature"> &rarr; {Array}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Функция возвращает массив значений ключей из аналогичных объектов по названию ключа.
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>aoo</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Array of Objects</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>param</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Number</span>
+|
+
+<span class="param-type">iAooParam</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">число или {key: string, value: any}</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>obj</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">новое значение на которое будет заменен элемент в массиве</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>v0.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array_object_update.ts.html" class="button">View Source</a>
+            <span>
+                <a href="array_object_update.ts.html">array/object/update.ts</a>, <a href="array_object_update.ts.html#line35">line 35</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>const array = [
+ { id: 64, name: "42942-5693", county: "Borders" },
+ { id: 4, name: "23465-7870", county: "Berkshire" },
+ { id: 13, name: "19616-0095", county: "Cambridgeshire" },
+ { id: 31, name: "79350", county: "Berkshire" }
+];
+
+AOO.update(array, { key: 'id', value: 4 }, {
+   id: 5, name: "23123-22", county: "Berkshire", address: "gh#21-2"
+ });
+
+//=> [
+       { id: 64, name: "42942-5693", county: "Borders" },
+       { id: 5, name: "23123-22", county: "Berkshire", address: "gh#21-2"
+       },
+       { id: 13, name: "19616-0095", county: "Cambridgeshire" },
+       { id: 31, name: "79350", county: "Berkshire" }
+     ]</code></pre>
     
 
 
