@@ -1,4 +1,5 @@
 import { is, cond, T, isEmpty } from "ramda";
+import errorWrapper from '../../errorWrapper/errorWrapper';
 
 export interface iAooParam {
   key: string;
@@ -37,29 +38,36 @@ export interface iAooParam {
   *      ]
   * 
  */
-const update = (aoo: any[], param: Number | iAooParam, obj: any): any[] => {
-  return aoo.map((el, idx) =>
-    cond([
-      [
-        is(Object),
-        () => {
-          //@ts-ignore          
-          const { key, value } = param;
-          if (el[key] === value) return obj;
-          return el;
-        }
-      ],
-      [
-        is(Number),
-        () => {
-          if (idx === param) return obj;
-          return el;
-        }
-      ],
-      //@ts-ignore
-      [(T, () => undefined)]
-    ])(param)
-  );
+const update = (aoo: any[], param: Number | iAooParam, obj: any, errorMod: boolean = false): any[] => {
+  let answer: any = undefined;
+  let err: any = null;
+  try {
+    answer = aoo.map((el, idx) =>
+      cond([
+        [
+          is(Object),
+          () => {
+            //@ts-ignore          
+            const { key, value } = param;
+            if (el[key] === value) return obj;
+            return el;
+          }
+        ],
+        [
+          is(Number),
+          () => {
+            if (idx === param) return obj;
+            return el;
+          }
+        ],
+        //@ts-ignore
+        [(T, () => undefined)]
+      ])(param)
+    );
+  } catch (error) {
+    err = error;
+  }
+  return errorWrapper(err, answer, errorMod);
 };
 
 export { update }

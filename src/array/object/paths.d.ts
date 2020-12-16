@@ -50,5 +50,5 @@
 });
   *
  */
-declare const paths: (collection: any, keys: any[]) => any;
+declare const paths: (collection: any, keys: any[], errorMod?: boolean) => any;
 export { paths };

@@ -14,5 +14,5 @@
   *   finderList(newArray, "bar");
   *   //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}];
   */
-declare const finderList: (array: any[], key: string) => any[];
+declare const finderList: (array: any[], key: string, errorMod?: boolean) => any[];
 export { finderList };

@@ -3,13 +3,29 @@
 **Библиотека резделена на модули:**
 
 - AOO - функции работы с коллекцией array of objects
-- Изменение элементов в массиве
-- Работа с масками
+  - AOO.finderList
+  - AOO.findValues
+  - AOO.paths
+  - AOO.update
+  - AOO.pUpdate
+  - AOO.factory
+- dateTime - утилиты для работы с датой
+  - dateTime.addHours
+  - dateTime.formatDate
+  - dateTime.formateDateToString
+  - dateTime.formatTime
+  - dateTime.getDate
+  - dateTime.isDate
+  - dateTime.reformate
+- mask - Работа с масками
+  - mask.lowFirst
+  - mask.captlzFrst
+  - mask.wrapNumMsk
 - Faker данных
 
 ## Тесты
 
-Библиотека частично покрыта тестами. Использованы следующие библиотеки
+функции работы с коллекцией array of objects полностью протестированы
 
 - jest
 
@@ -17,7 +33,8 @@
 
 Состояние: тесты проведены
 
-## Правила (пока не работает)
+## Правила 
+### работают только для коллекции массив из объектов
 
 - каждая функция имеет последним параметром errorMod. Default value of errorMod = false. If errorMod = true. Мы получаем на значение в виде:
   {

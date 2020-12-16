@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.update = void 0;
 const ramda_1 = require("ramda");
+const errorWrapper_1 = require("../../errorWrapper/errorWrapper");
 /**
   * Функция возвращает массив значений ключей из аналогичных объектов по названию ключа.
   *
@@ -34,28 +35,36 @@ const ramda_1 = require("ramda");
   *      ]
   *
  */
-const update = (aoo, param, obj) => {
-    return aoo.map((el, idx) => ramda_1.cond([
-        [
-            ramda_1.is(Object),
-            () => {
-                //@ts-ignore          
-                const { key, value } = param;
-                if (el[key] === value)
-                    return obj;
-                return el;
-            }
-        ],
-        [
-            ramda_1.is(Number),
-            () => {
-                if (idx === param)
-                    return obj;
-                return el;
-            }
-        ],
-        //@ts-ignore
-        [(ramda_1.T, () => undefined)]
-    ])(param));
+const update = (aoo, param, obj, errorMod = false) => {
+    let answer = undefined;
+    let err = null;
+    try {
+        answer = aoo.map((el, idx) => ramda_1.cond([
+            [
+                ramda_1.is(Object),
+                () => {
+                    //@ts-ignore          
+                    const { key, value } = param;
+                    if (el[key] === value)
+                        return obj;
+                    return el;
+                }
+            ],
+            [
+                ramda_1.is(Number),
+                () => {
+                    if (idx === param)
+                        return obj;
+                    return el;
+                }
+            ],
+            //@ts-ignore
+            [(ramda_1.T, () => undefined)]
+        ])(param));
+    }
+    catch (error) {
+        err = error;
+    }
+    return errorWrapper_1.default(err, answer, errorMod);
 };
 exports.update = update;

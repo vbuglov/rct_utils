@@ -77,5 +77,5 @@
   *  ])
   * };
  */
-declare const pUpdate: (collection: any, keys: any[], newData: any) => any;
+declare const pUpdate: (collection: any, keys: any[], newData: any, errorMod?: boolean) => any;
 export { pUpdate };

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.pUpdate = void 0;
 const update_1 = require("./update");
 const ramda_1 = require("ramda");
+const errorWrapper_1 = require("../../errorWrapper/errorWrapper");
 /**
   * Функция возвращает обновленную коллекцию по переданному пути
   *
@@ -82,34 +83,41 @@ const ramda_1 = require("ramda");
   *  ])
   * };
  */
-const pUpdate = (collection, keys, newData) => {
-    const c = ramda_1.cond([
-        [() => ramda_1.isEmpty(keys), () => {
-                return newData;
-            }],
-        [
-            (el) => ramda_1.is(Array, el),
-            (el) => {
-                const key = keys[0];
-                if (ramda_1.is(Array, key)) {
-                    const workArray = el.find((el) => (el[key[0]] === key[1]));
-                    return update_1.update(collection, { key: key[0], value: key[1] }, pUpdate(workArray, keys.slice(1), newData));
+const pUpdate = (collection, keys, newData, errorMod = false) => {
+    let answer = undefined;
+    let err = null;
+    try {
+        answer = ramda_1.cond([
+            [() => ramda_1.isEmpty(keys), () => {
+                    return newData;
+                }],
+            [
+                (el) => ramda_1.is(Array, el),
+                (el) => {
+                    const key = keys[0];
+                    if (ramda_1.is(Array, key)) {
+                        const workArray = el.find((el) => (el[key[0]] === key[1]));
+                        return update_1.update(collection, { key: key[0], value: key[1] }, pUpdate(workArray, keys.slice(1), newData));
+                    }
+                    else {
+                        const workArray = el.find((el) => (el[key[0]] === key[1]));
+                        return update_1.update(collection, { key: keys[0], value: keys[1] }, pUpdate(workArray, keys.slice(1), newData));
+                    }
                 }
-                else {
-                    const workArray = el.find((el) => (el[key[0]] === key[1]));
-                    return update_1.update(collection, { key: keys[0], value: keys[1] }, pUpdate(workArray, keys.slice(1), newData));
+            ],
+            [
+                (el) => ramda_1.is(Object, el),
+                (el) => {
+                    const key = keys[0];
+                    return Object.assign(Object.assign({}, el), { [key]: pUpdate(el[key], keys.slice(1), newData) });
                 }
-            }
-        ],
-        [
-            (el) => ramda_1.is(Object, el),
-            (el) => {
-                const key = keys[0];
-                return Object.assign(Object.assign({}, el), { [key]: pUpdate(el[key], keys.slice(1), newData) });
-            }
-        ],
-        [ramda_1.T, () => collection]
-    ])(collection);
-    return c;
+            ],
+            [ramda_1.T, () => collection]
+        ])(collection);
+    }
+    catch (error) {
+        err = error;
+    }
+    return errorWrapper_1.default(err, answer, errorMod);
 };
 exports.pUpdate = pUpdate;

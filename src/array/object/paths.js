@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.paths = void 0;
 const ramda_1 = require("ramda");
+const errorWrapper_1 = require("../../errorWrapper/errorWrapper");
 /**
   * Функция возвращаем элемент по заданному пути
   *
@@ -54,28 +55,36 @@ const ramda_1 = require("ramda");
 });
   *
  */
-const paths = (collection, keys) => {
-    return ramda_1.cond([
-        [() => ramda_1.isEmpty(keys), () => collection],
-        [
-            (el) => ramda_1.is(Array, el),
-            (el) => {
-                const key = keys[0];
-                if (ramda_1.is(Array, key)) {
-                    const item = el.find((obj) => obj[key[0]] === key[1]);
-                    return paths(item, keys.slice(1));
+const paths = (collection, keys, errorMod = false) => {
+    let answer = undefined;
+    let err = null;
+    try {
+        answer = ramda_1.cond([
+            [() => ramda_1.isEmpty(keys), () => collection],
+            [
+                (el) => ramda_1.is(Array, el),
+                (el) => {
+                    const key = keys[0];
+                    if (ramda_1.is(Array, key)) {
+                        const item = el.find((obj) => obj[key[0]] === key[1]);
+                        return paths(item, keys.slice(1));
+                    }
+                    return paths(el[key], keys.slice(1));
                 }
-                return paths(el[key], keys.slice(1));
-            }
-        ],
-        [
-            (el) => ramda_1.is(Object, el),
-            (el) => {
-                const key = keys[0];
-                return paths(el[key], keys.slice(1));
-            }
-        ],
-        [ramda_1.T, () => collection]
-    ])(collection);
+            ],
+            [
+                (el) => ramda_1.is(Object, el),
+                (el) => {
+                    const key = keys[0];
+                    return paths(el[key], keys.slice(1));
+                }
+            ],
+            [ramda_1.T, () => collection]
+        ])(collection);
+    }
+    catch (error) {
+        error = error;
+    }
+    return errorWrapper_1.default(err, answer, errorMod);
 };
 exports.paths = paths;

@@ -1,5 +1,6 @@
 import { update } from "./update"
 import { is, cond, T, isEmpty } from "ramda";
+import errorWrapper from "../../errorWrapper/errorWrapper";
 
 /**
   * Функция возвращает обновленную коллекцию по переданному пути
@@ -81,44 +82,49 @@ import { is, cond, T, isEmpty } from "ramda";
   * };
  */
 
-const pUpdate = (collection: any, keys: any[], newData: any): any => {
-  const c = cond([
-    [() => isEmpty(keys), () => {
-      return newData
-    }],
-    [
-      (el) => is(Array, el),
-      (el) => {
-        const key = keys[0];
-        if (is(Array, key)) {
-          const workArray = el.find((el: any) => (el[key[0]] === key[1]));
-          return update(
-            collection,
-            { key: key[0], value: key[1] },
-            pUpdate(workArray, keys.slice(1), newData)
-          );
+const pUpdate = (collection: any, keys: any[], newData: any, errorMod: boolean = false): any => {
+  let answer: any = undefined;
+  let err: any = null;
+  try {
+    answer = cond([
+      [() => isEmpty(keys), () => {
+        return newData
+      }],
+      [
+        (el) => is(Array, el),
+        (el) => {
+          const key = keys[0];
+          if (is(Array, key)) {
+            const workArray = el.find((el: any) => (el[key[0]] === key[1]));
+            return update(
+              collection,
+              { key: key[0], value: key[1] },
+              pUpdate(workArray, keys.slice(1), newData)
+            );
+          }
+          else {
+            const workArray = el.find((el: any) => (el[key[0]] === key[1]));
+            return update(
+              collection,
+              { key: keys[0], value: keys[1] },
+              pUpdate(workArray, keys.slice(1), newData)
+            );
+          }
         }
-        else {
-          const workArray = el.find((el: any) => (el[key[0]] === key[1]));
-          return update(
-            collection,
-            { key: keys[0], value: keys[1] },
-            pUpdate(workArray, keys.slice(1), newData)
-          );
+      ],
+      [
+        (el) => is(Object, el),
+        (el) => {
+          const key = keys[0];
+          return { ...el, [key]: pUpdate(el[key], keys.slice(1), newData) };
         }
-      }
-    ],
-    [
-      (el) => is(Object, el),
-      (el) => {
-        const key = keys[0];
-        return { ...el, [key]: pUpdate(el[key], keys.slice(1), newData) };
-      }
-    ],
-    [T, () => collection]
-  ])(collection);
-
-  return c;
+      ],
+      [T, () => collection]
+    ])(collection);
+  } catch (error) {
+    err = error;
+  }
+  return errorWrapper(err, answer, errorMod);
 };
 
 export { pUpdate };

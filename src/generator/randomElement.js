@@ -5,6 +5,15 @@ const ramda_1 = require("ramda");
 const arrayGenerator_1 = require("./arrayGenerator");
 const objectGenerator_1 = require("./objectGenerator");
 const faker = require("faker");
+/**
+  * Функция гененрирует случайный элемент
+  *
+  * @category generator
+  * @method
+  * @since v0.1.0
+  * @param {Number} - запас для генерации массива или объекта
+  * @return {String}
+  */
 const randomElement = (reserve) => {
     return ramda_1.cond([
         [ramda_1.equals(0), () => faker.phone.phoneNumber()],

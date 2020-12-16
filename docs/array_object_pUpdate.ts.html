@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#openGqlErrNotifi">openGqlErrNotifi</a></li><li><a href="global.html#openNotifi">openNotifi</a></li><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayOfObjects</h2><h3>Global</h3><ul><li><a href="global.html#finderList">finderList</a></li><li><a href="global.html#findValues">findValues</a></li><li><a href="global.html#paths">paths</a></li><li><a href="global.html#pUpdate">pUpdate</a></li><li><a href="global.html#update">update</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrst">captlzFrst</a></li><li><a href="global.html#lowFirst">lowFirst</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div><div class="category"><h2>validators</h2><h3>Global</h3><ul><li><a href="global.html#hasVal">hasVal</a></li><li><a href="global.html#isArr">isArr</a></li><li><a href="global.html#isInArr">isInArr</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isString">isString</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#openGqlErrNotifi">openGqlErrNotifi</a></li><li><a href="global.html#openNotifi">openNotifi</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayOfObjects</h2><h3>Global</h3><ul><li><a href="global.html#finderList">finderList</a></li><li><a href="global.html#findValues">findValues</a></li><li><a href="global.html#paths">paths</a></li><li><a href="global.html#pUpdate">pUpdate</a></li><li><a href="global.html#update">update</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrst">captlzFrst</a></li><li><a href="global.html#lowFirst">lowFirst</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div><div class="category"><h2>generator</h2><h3>Global</h3><ul><li><a href="global.html#arrayGenerator">arrayGenerator</a></li><li><a href="global.html#objectGenerator">objectGenerator</a></li><li><a href="global.html#randomElement">randomElement</a></li><li><a href="global.html#rKey">rKey</a></li></ul></div><div class="category"><h2>validators</h2><h3>Global</h3><ul><li><a href="global.html#hasVal">hasVal</a></li><li><a href="global.html#isArr">isArr</a></li><li><a href="global.html#isInArr">isInArr</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isString">isString</a></li></ul></div>
                 
             </nav>
         </div>
@@ -91,6 +91,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>import { update } from "./update"
 import { is, cond, T, isEmpty } from "ramda";
+import errorWrapper from "../../errorWrapper/errorWrapper";
 
 /**
   * Функция возвращает обновленную коллекцию по переданному пути
@@ -172,44 +173,49 @@ import { is, cond, T, isEmpty } from "ramda";
   * };
  */
 
-const pUpdate = (collection: any, keys: any[], newData: any): any => {
-  const c = cond([
-    [() => isEmpty(keys), () => {
-      return newData
-    }],
-    [
-      (el) => is(Array, el),
-      (el) => {
-        const key = keys[0];
-        if (is(Array, key)) {
-          const workArray = el.find((el: any) => (el[key[0]] === key[1]));
-          return update(
-            collection,
-            { key: key[0], value: key[1] },
-            pUpdate(workArray, keys.slice(1), newData)
-          );
+const pUpdate = (collection: any, keys: any[], newData: any, errorMod: boolean = false): any => {
+  let answer: any = undefined;
+  let err: any = null;
+  try {
+    answer = cond([
+      [() => isEmpty(keys), () => {
+        return newData
+      }],
+      [
+        (el) => is(Array, el),
+        (el) => {
+          const key = keys[0];
+          if (is(Array, key)) {
+            const workArray = el.find((el: any) => (el[key[0]] === key[1]));
+            return update(
+              collection,
+              { key: key[0], value: key[1] },
+              pUpdate(workArray, keys.slice(1), newData)
+            );
+          }
+          else {
+            const workArray = el.find((el: any) => (el[key[0]] === key[1]));
+            return update(
+              collection,
+              { key: keys[0], value: keys[1] },
+              pUpdate(workArray, keys.slice(1), newData)
+            );
+          }
         }
-        else {
-          const workArray = el.find((el: any) => (el[key[0]] === key[1]));
-          return update(
-            collection,
-            { key: keys[0], value: keys[1] },
-            pUpdate(workArray, keys.slice(1), newData)
-          );
+      ],
+      [
+        (el) => is(Object, el),
+        (el) => {
+          const key = keys[0];
+          return { ...el, [key]: pUpdate(el[key], keys.slice(1), newData) };
         }
-      }
-    ],
-    [
-      (el) => is(Object, el),
-      (el) => {
-        const key = keys[0];
-        return { ...el, [key]: pUpdate(el[key], keys.slice(1), newData) };
-      }
-    ],
-    [T, () => collection]
-  ])(collection);
-
-  return c;
+      ],
+      [T, () => collection]
+    ])(collection);
+  } catch (error) {
+    err = error;
+  }
+  return errorWrapper(err, answer, errorMod);
 };
 
 export { pUpdate };</code></pre>

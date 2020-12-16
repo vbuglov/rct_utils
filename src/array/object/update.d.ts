@@ -34,5 +34,5 @@ export interface iAooParam {
   *      ]
   *
  */
-declare const update: (aoo: any[], param: Number | iAooParam, obj: any) => any[];
+declare const update: (aoo: any[], param: Number | iAooParam, obj: any, errorMod?: boolean) => any[];
 export { update };

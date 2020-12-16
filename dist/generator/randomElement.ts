@@ -3,7 +3,16 @@ import { arrayGenerator } from './arrayGenerator'
 import { objectGenerator } from './objectGenerator'
 const faker = require("faker");
 
-export const randomElement = (reserve: number) => {
+/**
+  * Функция гененрирует случайный элемент
+  *
+  * @category generator
+  * @method
+  * @since v0.1.0
+  * @param {Number} - запас для генерации массива или объекта
+  * @return {String}
+  */
+const randomElement = (reserve: number) => {
   return cond([
     [equals(0), () => faker.phone.phoneNumber()],
     [equals(1), () => faker.address.country()],
@@ -14,4 +23,6 @@ export const randomElement = (reserve: number) => {
     [T, () => null]
     //@ts-ignore
   ])(random(10));
-}
+};
+
+export { randomElement }

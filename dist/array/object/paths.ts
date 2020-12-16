@@ -1,4 +1,5 @@
 import { is, cond, T, isEmpty } from "ramda";
+import errorWrapper from '../../errorWrapper/errorWrapper';
 
 
 /**
@@ -53,29 +54,36 @@ import { is, cond, T, isEmpty } from "ramda";
 });
   * 
  */
-const paths = (collection: any, keys: any[]): any => {
-  return cond([
-    [() => isEmpty(keys), () => collection],
-    [
-      (el) => is(Array, el),
-      (el) => {
-        const key = keys[0];
-        if (is(Array, key)) {
-          const item = el.find((obj: any) => obj[key[0]] === key[1]);
-          return paths(item, keys.slice(1));
+const paths = (collection: any, keys: any[], errorMod: boolean = false): any => {
+  let answer: any = undefined;
+  let err: any = null;
+  try {
+    answer = cond([
+      [() => isEmpty(keys), () => collection],
+      [
+        (el) => is(Array, el),
+        (el) => {
+          const key = keys[0];
+          if (is(Array, key)) {
+            const item = el.find((obj: any) => obj[key[0]] === key[1]);
+            return paths(item, keys.slice(1));
+          }
+          return paths(el[key], keys.slice(1));
         }
-        return paths(el[key], keys.slice(1));
-      }
-    ],
-    [
-      (el) => is(Object, el),
-      (el) => {
-        const key = keys[0];
-        return paths(el[key], keys.slice(1));
-      }
-    ],
-    [T, () => collection]
-  ])(collection);
+      ],
+      [
+        (el) => is(Object, el),
+        (el) => {
+          const key = keys[0];
+          return paths(el[key], keys.slice(1));
+        }
+      ],
+      [T, () => collection]
+    ])(collection);
+  } catch (error) {
+    error = error;
+  }
+  return errorWrapper(err, answer, errorMod);
 };
 
 export { paths };

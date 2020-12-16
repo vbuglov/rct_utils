@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.finderList = void 0;
 /* eslint-disable import/prefer-default-export */
 const ramda_1 = require("ramda");
+const errorWrapper_1 = require("../../errorWrapper/errorWrapper");
 /**
   * Функция возвращает массив объектов, в которых присутсвует заданный
   * ключ. Поиск ведеться по массиву с объектами.
@@ -19,16 +20,17 @@ const ramda_1 = require("ramda");
   *   finderList(newArray, "bar");
   *   //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}];
   */
-const finderList = (array, key) => {
+const finderList = (array, key, errorMod = false) => {
     if (!ramda_1.is(Array, array))
         return [];
-    let answer = [];
+    let answer = undefined;
+    let error = null;
     try {
         answer = array.filter(el => el[key]);
     }
-    catch (error) {
-        console.log(error);
+    catch (err) {
+        error = err;
     }
-    return answer;
+    return errorWrapper_1.default(error, answer, errorMod);
 };
 exports.finderList = finderList;
