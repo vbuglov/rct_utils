@@ -29,7 +29,9 @@
 
 - jest
 
-## Взаимодействие
+## Ссылки
+- https://www.npmjs.com/package/@dev-bi/rct_utils
+- https://github.com/vbuglov/rct_utils
 
 Состояние: тесты проведены
 

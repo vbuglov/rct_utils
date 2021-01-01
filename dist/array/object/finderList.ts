@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { is } from 'ramda'
 import errorWrapper from '../../errorWrapper/errorWrapper';
+import { iError } from '../../errorWrapper/errorWrapper';
 
 
 /**
@@ -19,7 +20,7 @@ import errorWrapper from '../../errorWrapper/errorWrapper';
   *   finderList(newArray, "bar");
   *   //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}];
   */
-const finderList = (array: any[], key: string, errorMod = false): any[] => {
+const finderList = (array: any[], key: string, errorMod = false): iError | any[] => {
   if (!is(Array, array)) return [];
   let answer: any = undefined;
   let error: any = null;
