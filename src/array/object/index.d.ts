@@ -1,5 +1,5 @@
 export declare const AOO: {
-    finderList: (array: any[], key: string, errorMod?: boolean) => any[];
+    finderList: (array: any[], key: string, errorMod?: boolean) => any[] | import("../../errorWrapper/errorWrapper").iError;
     findValues: (array: any[], key: string, errorMod?: boolean) => string[] | null;
     paths: (collection: any, keys: any[], errorMod?: boolean) => any;
     update: (aoo: any[], param: Number | import("./update").iAooParam, obj: any, errorMod?: boolean) => any[];

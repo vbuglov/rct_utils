@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> object/object_creator.js</title>
+  <title> utils/encrypt.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>object/object_creator.js</h1>
+                    <h1>utils/encrypt.ts</h1>
                 </header>
                 
 
@@ -89,44 +89,46 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { checkElementInArr, hasVal } from './validators';
-import { formateDateToString } from './time_funcs';
-import { cond, T, curry, merge } from 'ramda';
+            <pre class="prettyprint source linenums"><code>import aesjs from "aes-js";
+import { slice, curry } from "ramda";
+import { parseKey } from "./parseKey";
+import errorWrapper from '../errorWrapper/errorWrapper';
+import { iError } from '../errorWrapper/errorWrapper';
 
 /**
- *
- * @param obj         - базовый объект
- * @param params      - список параметров
- * @param nonNullable - запрет на замену на null
- * @param dates       - переформатирует дату в строку нужного вида
- * @param bigInt      - чтобы избежать ошибок с числами с более чем 8 порядка
- * @param phone       - оставляет только числа
- * @param booleans    - возвращает либо пришедший boolean либо false
- * @param default    - возвращает значение или null
- *
- * @description Обязательно! имя параметра дожно совпадать с именем параметра объекта
- * Проверяет параметры и, при необходимости подставляет недостающие значения (null)
- * сond - функция из ramda - первый элемент условие - второй способ обработки
- * таким образом для доп валидации достаточно добавить функцию проверки и обработки
- */
+  * Функция принимает строку и ключ и возвращает зишифрованный хэш
+  *
+  * @category utils
+  * @method
+  * @since v0.1.0
+  * @param {string} text - текст который будет зашифрован
+  * @param {string} key - ключ для текста
+  * @return {string[]}
+  * @example
+  *
+  *   encrypt("hellow world", "1234");
+  *      //=> 597bb12abd77e8d8791065c5  
+  * 
+  *   encrypt("кулак", "types");
+  *      //=> ee5304e969f485ee857a   
+  */
 
-const resolveAdd = curry((resolver, obj, el) => merge(obj, { [el]: resolver(el) }));
+const encrypt = curry((text: string, key: string, errorMod = false): string | iError => {
+  let answer: any = undefined;
+  let error: any = null;
+  try {
+    const newKey = slice(0, 16, parseKey(key));
+    const textBytes = aesjs.utils.utf8.toBytes(text);
+    const aesCtr = new aesjs.ModeOfOperation.ctr(newKey, new aesjs.Counter(7));
+    const encryptedBytes = aesCtr.encrypt(textBytes);
+    answer = aesjs.utils.hex.fromBytes(encryptedBytes);
+  } catch (err) {
+    error = err;
+  }
+  return errorWrapper(error, answer, errorMod)
+});
 
-// eslint-disable-next-line import/prefer-default-export
-export const objectCreator = (obj, { params, nonNullable, dates, bigInt, phone, booleans }) => {
-  const resolver = cond([
-      [hasVal(obj), (el) => +obj[el].value],
-      [checkElementInArr(bigInt), (el) => `${obj[el]}`],
-      [checkElementInArr(dates), (el) => formateDateToString(obj[el]) || null],
-      [checkElementInArr(nonNullable), (el) => obj[el]],
-      [checkElementInArr(phone), (el) => obj[el].replace(/\D/gm, '')],
-      [checkElementInArr(booleans), (el) => obj[el] || false],
-      [T, (el) => obj[el] || null]
-    ])
-
-  return params.reduce(resolveAdd(resolver), {})
-};
-</code></pre>
+export { encrypt }</code></pre>
         </article>
     </section>
 

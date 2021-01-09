@@ -39,8 +39,10 @@
     "docs"
   ],
   "dependencies": {
+    "@types/aes-js": "^3.1.1",
     "@types/faker": "^5.1.5",
     "@types/ramda": "^0.27.32",
+    "aes-js": "^3.1.2",
     "ansi-styles": "^3.2.1",
     "argparse": "^1.0.10",
     "balanced-match": "^1.0.0",

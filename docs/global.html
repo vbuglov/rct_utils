@@ -70,7 +70,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#openGqlErrNotifi">openGqlErrNotifi</a></li><li><a href="global.html#openNotifi">openNotifi</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayOfObjects</h2><h3>Global</h3><ul><li><a href="global.html#finderList">finderList</a></li><li><a href="global.html#findValues">findValues</a></li><li><a href="global.html#paths">paths</a></li><li><a href="global.html#pUpdate">pUpdate</a></li><li><a href="global.html#update">update</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrst">captlzFrst</a></li><li><a href="global.html#lowFirst">lowFirst</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div><div class="category"><h2>generator</h2><h3>Global</h3><ul><li><a href="global.html#arrayGenerator">arrayGenerator</a></li><li><a href="global.html#objectGenerator">objectGenerator</a></li><li><a href="global.html#randomElement">randomElement</a></li><li><a href="global.html#rKey">rKey</a></li></ul></div><div class="category"><h2>validators</h2><h3>Global</h3><ul><li><a href="global.html#hasVal">hasVal</a></li><li><a href="global.html#isArr">isArr</a></li><li><a href="global.html#isInArr">isInArr</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isString">isString</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#openGqlErrNotifi">openGqlErrNotifi</a></li><li><a href="global.html#openNotifi">openNotifi</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#resolveAdd">resolveAdd</a></li></ul></div><div class="category"><h2>ArrayOfObjects</h2><h3>Global</h3><ul><li><a href="global.html#finderList">finderList</a></li><li><a href="global.html#findValues">findValues</a></li><li><a href="global.html#paths">paths</a></li><li><a href="global.html#pUpdate">pUpdate</a></li><li><a href="global.html#update">update</a></li></ul></div><div class="category"><h2>Masks</h2><h3>Global</h3><ul><li><a href="global.html#wrapNumMsk">wrapNumMsk</a></li></ul></div><div class="category"><h2>Store</h2><h3>Global</h3><ul><li><a href="global.html#CacheStore">CacheStore</a></li></ul></div><div class="category"><h2>String_Parser</h2><h3>Global</h3><ul><li><a href="global.html#captlzFrst">captlzFrst</a></li><li><a href="global.html#lowFirst">lowFirst</a></li><li><a href="global.html#slicer">slicer</a></li></ul></div><div class="category"><h2>generator</h2><h3>Global</h3><ul><li><a href="global.html#arrayGenerator">arrayGenerator</a></li><li><a href="global.html#objectGenerator">objectGenerator</a></li><li><a href="global.html#randomElement">randomElement</a></li><li><a href="global.html#rKey">rKey</a></li></ul></div><div class="category"><h2>utils</h2><h3>Global</h3><ul><li><a href="global.html#decrypte">decrypte</a></li><li><a href="global.html#encrypt">encrypt</a></li><li><a href="global.html#parseKey">parseKey</a></li></ul></div><div class="category"><h2>validators</h2><h3>Global</h3><ul><li><a href="global.html#hasVal">hasVal</a></li><li><a href="global.html#isArr">isArr</a></li><li><a href="global.html#isInArr">isInArr</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isString">isString</a></li></ul></div>
                 
             </nav>
         </div>
@@ -326,10 +326,7 @@
 
 
 <div class="description">
-    <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Обязательно! имя параметра дожно совпадать с именем параметра объекта
-Проверяет параметры и, при необходимости подставляет недостающие значения (null)
-сond - функция из ramda - первый элемент условие - второй способ обработки
-таким образом для доп валидации достаточно добавить функцию проверки и обработки
+    <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Обязательно! имя параметра дожно совпадать с именем параметра объектаПроверяет параметры и, при необходимости подставляет недостающие значения (null)сond - функция из ramda - первый элемент условие - второй способ обработкитаким образом для доп валидации достаточно добавить функцию проверки и обработки
 </div>
 
 
@@ -747,6 +744,418 @@
 
 
     
+    <h4 class="name" id="decrypte">
+        <a class="href-link" href="#decrypte">#</a>
+        
+        <span class="code-name">
+            
+                decrypte<span class="signature">(text, key)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Функция принимает строку и ключ и возвращает зишифрованный хэш
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>text</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">текст который будет зашифрован</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>key</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">ключ для текста</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>v0.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="utils_decrypte.ts.html" class="button">View Source</a>
+            <span>
+                <a href="utils_decrypte.ts.html">utils/decrypte.ts</a>, <a href="utils_decrypte.ts.html#line23">line 23</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;string></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>decrypte("597bb12abd77e8d8791065c5", "1234");     //=> hellow world  decrypte("ee5304e969f485ee857a", "types");     //=> кулак</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="encrypt">
+        <a class="href-link" href="#encrypt">#</a>
+        
+        <span class="code-name">
+            
+                encrypt<span class="signature">(text, key)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Функция принимает строку и ключ и возвращает зишифрованный хэш
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>text</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">текст который будет зашифрован</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>key</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">ключ для текста</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>v0.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="utils_encrypt.ts.html" class="button">View Source</a>
+            <span>
+                <a href="utils_encrypt.ts.html">utils/encrypt.ts</a>, <a href="utils_encrypt.ts.html#line23">line 23</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;string></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>encrypt("hellow world", "1234");     //=> 597bb12abd77e8d8791065c5  encrypt("кулак", "types");     //=> ee5304e969f485ee857a</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
     <h4 class="name" id="finderList">
         <a class="href-link" href="#finderList">#</a>
         
@@ -761,8 +1170,7 @@
     
     
     <div class="description">
-        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Функция возвращает массив объектов, в которых присутсвует заданный
-ключ. Поиск ведеться по массиву с объектами.
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Функция возвращает массив объектов, в которых присутсвует заданныйключ. Поиск ведеться по массиву с объектами.
     </div>
     
 
@@ -944,9 +1352,7 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}];
-  finderList(newArray, "bar");
-  //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}];</code></pre>
+        <pre class="prettyprint"><code>const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}, {foo: "world", isCheck: true}];  finderList(newArray, "bar");  //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}];</code></pre>
     
 
 
@@ -1154,8 +1560,7 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}];
-     findValues(newArray, "foo");      //=> ["hello", "bye"];</code></pre>
+        <pre class="prettyprint"><code>const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}];     findValues(newArray, "foo");      //=> ["hello", "bye"];</code></pre>
     
 
 
@@ -1361,9 +1766,7 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>const obj = {1}
-     hasVal(12);      //=> false
-     hasVal([]);      //=> true</code></pre>
+        <pre class="prettyprint"><code>const obj = {1}     hasVal(12);      //=> false     hasVal([]);      //=> true</code></pre>
     
 
 
@@ -1544,8 +1947,7 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>isArr(12);      //=> false
-     isArr([]);      //=> true</code></pre>
+        <pre class="prettyprint"><code>isArr(12);      //=> false     isArr([]);      //=> true</code></pre>
     
 
 
@@ -1726,8 +2128,7 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>isArr(12);      //=> false
-     isArr([]);      //=> true</code></pre>
+        <pre class="prettyprint"><code>isArr(12);      //=> false     isArr([]);      //=> true</code></pre>
     
 
 
@@ -1908,8 +2309,7 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>isArr(12);      //=> false
-     isArr([]);      //=> true</code></pre>
+        <pre class="prettyprint"><code>isArr(12);      //=> false     isArr([]);      //=> true</code></pre>
     
 
 
@@ -2090,8 +2490,7 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>isObject(12);      //=> false
-     isObject({});      //=> true</code></pre>
+        <pre class="prettyprint"><code>isObject(12);      //=> false     isObject({});      //=> true</code></pre>
     
 
 
@@ -2272,8 +2671,7 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>isString(12);      //=> false
-     isString('abc');      //=> true</code></pre>
+        <pre class="prettyprint"><code>isString(12);      //=> false     isString('abc');      //=> true</code></pre>
     
 
 
@@ -3055,6 +3453,187 @@
 
 
     
+    <h4 class="name" id="parseKey">
+        <a class="href-link" href="#parseKey">#</a>
+        
+        <span class="code-name">
+            
+                parseKey<span class="signature">(key)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>Функция преобразует строку в массив для 16bit кодировщика
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>key</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">ключ</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>v0.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="utils_parseKey.ts.html" class="button">View Source</a>
+            <span>
+                <a href="utils_parseKey.ts.html">utils/parseKey.ts</a>, <a href="utils_parseKey.ts.html#line18">line 18</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;string></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>parseKey('1');     //=> [49,113,119,101,114,116,121,117,105,111,112,97,115,100,102,103,104]  parseKey('secret');     //=> [115,101,99,114,101,116,113,119,101,114,116,121,117,105,111,112,97,115,100,102,103,104]</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
     <h4 class="name" id="paths">
         <a class="href-link" href="#paths">#</a>
         
@@ -3257,43 +3836,7 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>const array = [
- {
-   id: 2,
-   gnom: 222
- },
- {
-   id: 4,
-   gnom: {
-     c: [
-       { id: 1, c: 2 },
-       { id: 2, b: 2 },
-       { id: 4, v: 2 }
-     ],
-     a: 3
-   }
- }
-];
-
-AOO.paths(array, [["id", 4], "name"]);
-//=> "23465-7870"
-
-const object = {
- quantifying: {
-   Towels: [
-     { feed: {}, id: 1 },
-     { id: 2 },
-     { id: 3 },
-     { Chair: "Reyes.Lebsack@hotmail.com", Oklahoma: {}, id: 4 },
-     { utilize: {}, engage: "747-776-1611", id: 5 }
-   ],
-   Electronics: "239-934-8977 x1217",
-   Assurance: { Configurable: "607-385-4573 x0039" }
- }
-};
-
-AOO.paths(object, ['quantifying', 'Towels', ['id', 4], 'Chair']);
-//=>  "Reyes.Lebsack@hotmail.com"
+        <pre class="prettyprint"><code>const array = [ {   id: 2,   gnom: 222 }, {   id: 4,   gnom: {     c: [       { id: 1, c: 2 },       { id: 2, b: 2 },       { id: 4, v: 2 }     ],     a: 3   } }];AOO.paths(array, [["id", 4], "name"]);//=> "23465-7870"const object = { quantifying: {   Towels: [     { feed: {}, id: 1 },     { id: 2 },     { id: 3 },     { Chair: "Reyes.Lebsack@hotmail.com", Oklahoma: {}, id: 4 },     { utilize: {}, engage: "747-776-1611", id: 5 }   ],   Electronics: "239-934-8977 x1217",   Assurance: { Configurable: "607-385-4573 x0039" } }};AOO.paths(object, ['quantifying', 'Towels', ['id', 4], 'Chair']);//=>  "Reyes.Lebsack@hotmail.com"
   });
 });</code></pre>
     
@@ -3532,72 +4075,7 @@ AOO.paths(object, ['quantifying', 'Towels', ['id', 4], 'Chair']);
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>const object = {
- quantifying: {
-   Towels: [
-     { feed: {}, id: 1 },
-     { id: 2 },
-     { id: 3 },
-     { Chair: "Reyes.Lebsack@hotmail.com", Oklahoma: {}, id: 4 },
-     { utilize: {}, engage: "747-776-1611", id: 5 }
-   ],
-   Electronics: "239-934-8977 x1217",
-   Assurance: { Configurable: "607-385-4573 x0039" }
- }
-};
-
-AOO.pUpdate(object, ["quantifying", "Towels", ["id", 4], "Chair"], * "friend@gmail.com");
- //=>
-  ({
-   quantifying: {
-     Towels: [
-       { feed: {}, id: 1 },
-       { id: 2 },
-       { id: 3 },
-       { Chair: "friend@gmail.com", Oklahoma: {}, id: 4 },
-       { utilize: {}, engage: "747-776-1611", id: 5 }
-     ],
-     Electronics: "239-934-8977 x1217",
-     Assurance: { Configurable: "607-385-4573 x0039" }
-   }
- });
-
-const array = [
- {
-   id: 2,
-   gnom: 222
- },
- {
-   id: 4,
-   gnom: {
-     c: [
-       { id: 1, c: 2 },
-       { id: 2, b: 2 },
-       { id: 4, v: 2 }
-     ],
-     a: 3
-   }
- }
-];
-
-  * AOO.pUpdate(array, [["id", 4], "gnom", "c", ["id", 2], "b"], { c:  2, d: 3 });
-
-//=>
- [
-   { id: 2, gnom: 222 },
-   {
-     id: 4,
-     gnom: {
-       c: [
-         { id: 1, c: 2 },
-         { id: 2, b: { c: 2, d: 3 } },
-         { id: 4, v: 2 }
-       ],
-       a: 3
-     }
-   }
- ])
-};</code></pre>
+        <pre class="prettyprint"><code>const object = { quantifying: {   Towels: [     { feed: {}, id: 1 },     { id: 2 },     { id: 3 },     { Chair: "Reyes.Lebsack@hotmail.com", Oklahoma: {}, id: 4 },     { utilize: {}, engage: "747-776-1611", id: 5 }   ],   Electronics: "239-934-8977 x1217",   Assurance: { Configurable: "607-385-4573 x0039" } }};AOO.pUpdate(object, ["quantifying", "Towels", ["id", 4], "Chair"], * "friend@gmail.com"); //=>  ({   quantifying: {     Towels: [       { feed: {}, id: 1 },       { id: 2 },       { id: 3 },       { Chair: "friend@gmail.com", Oklahoma: {}, id: 4 },       { utilize: {}, engage: "747-776-1611", id: 5 }     ],     Electronics: "239-934-8977 x1217",     Assurance: { Configurable: "607-385-4573 x0039" }   } });const array = [ {   id: 2,   gnom: 222 }, {   id: 4,   gnom: {     c: [       { id: 1, c: 2 },       { id: 2, b: 2 },       { id: 4, v: 2 }     ],     a: 3   } }];  * AOO.pUpdate(array, [["id", 4], "gnom", "c", ["id", 2], "b"], { c:  2, d: 3 });//=> [   { id: 2, gnom: 222 },   {     id: 4,     gnom: {       c: [         { id: 1, c: 2 },         { id: 2, b: { c: 2, d: 3 } },         { id: 4, v: 2 }       ],       a: 3     }   } ])};</code></pre>
     
 
 
@@ -3897,11 +4375,7 @@ const array = [
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>rKey();
-     //=> "eh80f1l0o"
-
-      rKey();
-     //=> ""ijbs1eovg""</code></pre>
+        <pre class="prettyprint"><code>rKey();     //=> "eh80f1l0o"      rKey();     //=> ""ijbs1eovg""</code></pre>
     
 
 
@@ -4341,24 +4815,7 @@ const array = [
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>const array = [
- { id: 64, name: "42942-5693", county: "Borders" },
- { id: 4, name: "23465-7870", county: "Berkshire" },
- { id: 13, name: "19616-0095", county: "Cambridgeshire" },
- { id: 31, name: "79350", county: "Berkshire" }
-];
-
-AOO.update(array, { key: 'id', value: 4 }, {
-   id: 5, name: "23123-22", county: "Berkshire", address: "gh#21-2"
- });
-
-//=> [
-       { id: 64, name: "42942-5693", county: "Borders" },
-       { id: 5, name: "23123-22", county: "Berkshire", address: "gh#21-2"
-       },
-       { id: 13, name: "19616-0095", county: "Cambridgeshire" },
-       { id: 31, name: "79350", county: "Berkshire" }
-     ]</code></pre>
+        <pre class="prettyprint"><code>const array = [ { id: 64, name: "42942-5693", county: "Borders" }, { id: 4, name: "23465-7870", county: "Berkshire" }, { id: 13, name: "19616-0095", county: "Cambridgeshire" }, { id: 31, name: "79350", county: "Berkshire" }];AOO.update(array, { key: 'id', value: 4 }, {   id: 5, name: "23123-22", county: "Berkshire", address: "gh#21-2" });//=> [       { id: 64, name: "42942-5693", county: "Borders" },       { id: 5, name: "23123-22", county: "Berkshire", address: "gh#21-2"       },       { id: 13, name: "19616-0095", county: "Cambridgeshire" },       { id: 31, name: "79350", county: "Berkshire" }     ]</code></pre>
     
 
 

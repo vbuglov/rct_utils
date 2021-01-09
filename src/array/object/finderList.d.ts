@@ -1,3 +1,4 @@
+import { iError } from '../../errorWrapper/errorWrapper';
 /**
   * Функция возвращает массив объектов, в которых присутсвует заданный
   * ключ. Поиск ведеться по массиву с объектами.
@@ -14,5 +15,5 @@
   *   finderList(newArray, "bar");
   *   //=> [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21}];
   */
-declare const finderList: (array: any[], key: string, errorMod?: boolean) => any[];
+declare const finderList: (array: any[], key: string, errorMod?: boolean) => iError | any[];
 export { finderList };
