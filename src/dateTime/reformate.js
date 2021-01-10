@@ -5,6 +5,16 @@ const ramda_1 = require("ramda");
 const getTime_1 = require("./getTime");
 const getDate_1 = require("./getDate");
 const getMthName_1 = require("./getMthName");
+/**
+  * преобразовывает дату в строку по указанному формату
+  *
+  * @category dateTime
+  * @method
+  * @since v0.1.0
+  * @param {date} date - текст который будет зашифрован
+  * @param {string} format - текст который будет зашифрован
+  * @return {string}
+  */
 const reformate = (date, format) => ramda_1.cond([
     [ramda_1.equals('time-only'), () => {
             const { hr, min, sec } = getTime_1.getTime(date);

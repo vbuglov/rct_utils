@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> array/object/findValues.ts</title>
+  <title> dateTime/getTime.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>array/object/findValues.ts</h1>
+                    <h1>dateTime/getTime.ts</h1>
                 </header>
                 
 
@@ -89,43 +89,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { pickAll, values, is } from 'ramda'
-import errorWrapper from '../../errorWrapper/errorWrapper';
+            <pre class="prettyprint source linenums"><code>import { formatTime } from './formatTime';
 
 /**
-  * Функция возвращает массив значений ключей из аналогичных объектов по названию ключа.
+  * распределяет дату в объект - час минута секунда
   *
-  * @category ArrayOfObjects
+  * @category dateTime
   * @method
   * @since v0.1.0
-  * @param {Array} array - массив в котором ведёться поиск
-  * @param {string} key - некоторое значение ключа
-  * @return {Array} - values[]
-  * 
-  * @example
-  *
-  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}];
-  *      findValues(newArray, "foo");      //=> ["hello", "bye"];
+  * @param {date} date - текст который будет зашифрован
+  * @return {object}
   */
-const findValues = (array: any[], key: string, errorMod: boolean = false): string[] | null => {
-  let answer: any = undefined;
-  let err: any = null;
-  try {
-    if (is(Array, array)) {
-      answer = array.map((el) => {
-        const item: any = pickAll([key], el);
-        return values(item)[0];
-      })
-    } else {
-      answer = null;
-    }
-  } catch (error) {
-    err = error;
+
+const getTime = (date: any) => {
+  date = new Date(date)
+  return {
+    hr: formatTime(date.getHours()),
+    min: formatTime(date.getMinutes()),
+    sec: formatTime(date.getSeconds())
   }
-  return errorWrapper(err, answer, errorMod)
 };
 
-export { findValues };</code></pre>
+export { getTime };</code></pre>
         </article>
     </section>
 

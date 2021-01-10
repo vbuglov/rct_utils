@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> array/object/findValues.ts</title>
+  <title> dateTime/prepSec.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>array/object/findValues.ts</h1>
+                    <h1>dateTime/prepSec.ts</h1>
                 </header>
                 
 
@@ -89,43 +89,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { pickAll, values, is } from 'ramda'
-import errorWrapper from '../../errorWrapper/errorWrapper';
+            <pre class="prettyprint source linenums"><code>import errorWrapper, { iError } from "../errorWrapper/errorWrapper";
 
 /**
-  * Функция возвращает массив значений ключей из аналогичных объектов по названию ключа.
+  * Преобразует секунды в новоую дату от 2000го года
   *
-  * @category ArrayOfObjects
+  * @category dateTime
   * @method
   * @since v0.1.0
-  * @param {Array} array - массив в котором ведёться поиск
-  * @param {string} key - некоторое значение ключа
-  * @return {Array} - values[]
+  * @param {number} sec - количество секунд
+  * @return {date}
   * 
   * @example
-  *
-  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}];
-  *      findValues(newArray, "foo");      //=> ["hello", "bye"];
+  * 
+  *    const answer = dateTime.prepSec(60);
+  *    dateTime.getTime(answer);
+  *     // => {
+  *        hr: "00",
+  *        min: "01",
+  *        sec: "00"
+  *      };
   */
-const findValues = (array: any[], key: string, errorMod: boolean = false): string[] | null => {
+
+const prepSec = (sec: number = 0, errorMod = false): Date | iError => {
   let answer: any = undefined;
-  let err: any = null;
+  let error: any = null;
   try {
-    if (is(Array, array)) {
-      answer = array.map((el) => {
-        const item: any = pickAll([key], el);
-        return values(item)[0];
-      })
-    } else {
-      answer = null;
-    }
-  } catch (error) {
-    err = error;
+    answer = new Date(+new Date(2000, 0, 0, 0, 0, 0, 0) + sec * 1000);
+  } catch (err) {
+    error = err
   }
-  return errorWrapper(err, answer, errorMod)
+  return errorWrapper(error, answer, errorMod);
 };
 
-export { findValues };</code></pre>
+export { prepSec };</code></pre>
         </article>
     </section>
 

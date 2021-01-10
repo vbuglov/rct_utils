@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> array/object/findValues.ts</title>
+  <title> dateTime/reformate.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>array/object/findValues.ts</h1>
+                    <h1>dateTime/reformate.ts</h1>
                 </header>
                 
 
@@ -89,43 +89,50 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { pickAll, values, is } from 'ramda'
-import errorWrapper from '../../errorWrapper/errorWrapper';
+            <pre class="prettyprint source linenums"><code>import { cond, equals, T } from 'ramda';
+import { getTime } from './getTime'
+import { getDate } from './getDate'
+import { getMthName } from './getMthName'
+
 
 /**
-  * Функция возвращает массив значений ключей из аналогичных объектов по названию ключа.
+  * преобразовывает дату в строку по указанному формату
   *
-  * @category ArrayOfObjects
+  * @category dateTime
   * @method
   * @since v0.1.0
-  * @param {Array} array - массив в котором ведёться поиск
-  * @param {string} key - некоторое значение ключа
-  * @return {Array} - values[]
-  * 
-  * @example
-  *
-  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}];
-  *      findValues(newArray, "foo");      //=> ["hello", "bye"];
+  * @param {date} date - текст который будет зашифрован
+  * @param {string} format - текст который будет зашифрован
+  * @return {string}
   */
-const findValues = (array: any[], key: string, errorMod: boolean = false): string[] | null => {
-  let answer: any = undefined;
-  let err: any = null;
-  try {
-    if (is(Array, array)) {
-      answer = array.map((el) => {
-        const item: any = pickAll([key], el);
-        return values(item)[0];
-      })
-    } else {
-      answer = null;
-    }
-  } catch (error) {
-    err = error;
-  }
-  return errorWrapper(err, answer, errorMod)
-};
 
-export { findValues };</code></pre>
+const reformate = (date: any, format: never) =>
+  cond([
+    [equals('time-only'), () => {
+      const { hr, min, sec } = getTime(date)
+      return `${hr}:${min}:${sec}`;
+    }],
+    [equals('date-only'), () => {
+      const { day, mth, year } = getDate(date)
+      return `${day}/${mth}/${year}`;
+    }],
+    [equals('date-report'), () => {
+      const { day, mth, year } = getDate(date)
+      return `${year}-${mth}-${day}`
+    }],
+    [equals('mth-date-report'), () => {
+      date = new Date(date)
+      return `${getMthName(date)} ${date.getDate()}`
+    }],
+    [T, () => {
+      const { hr, min, sec } = getTime(date)
+      const { day, mth, year } = getDate(date)
+      return `${day}/${mth}/${year} ${hr}:${min}:${sec}`;
+    }]
+  ])(format);
+
+export { reformate };
+</code></pre>
         </article>
     </section>
 

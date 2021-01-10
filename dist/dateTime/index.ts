@@ -5,7 +5,8 @@ import { formatTime } from './formatTime';
 import { getDate } from './getDate';
 import { isDate } from './isDate';
 import { reformate } from './reformate';
-
+import { prepSec } from './prepSec';
+import { getTime } from './getTime'
 
 export const dateTime = {
   addHours,
@@ -13,6 +14,8 @@ export const dateTime = {
   formateDateToString,
   formatTime,
   getDate,
+  getTime,
   isDate,
-  reformate
+  reformate,
+  prepSec
 }

@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> array/object/findValues.ts</title>
+  <title> dateTime/addHours.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>array/object/findValues.ts</h1>
+                    <h1>dateTime/addHours.ts</h1>
                 </header>
                 
 
@@ -89,43 +89,47 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { pickAll, values, is } from 'ramda'
-import errorWrapper from '../../errorWrapper/errorWrapper';
+            <pre class="prettyprint source linenums"><code>import { curry } from "ramda";
+import errorWrapper from "../errorWrapper/errorWrapper";
 
 /**
-  * Функция возвращает массив значений ключей из аналогичных объектов по названию ключа.
+  * Добавляет указанное количество часов к дате
   *
-  * @category ArrayOfObjects
+  * @category dateTime
   * @method
   * @since v0.1.0
-  * @param {Array} array - массив в котором ведёться поиск
-  * @param {string} key - некоторое значение ключа
-  * @return {Array} - values[]
-  * 
+  * @param {date} date - текст который будет зашифрован
+  * @param {number} h - ключ для текста
+  * @return {date}
   * @example
   *
-  *      const newArray = [{foo: "hello", bar: 17, isCheck: true}, {foo: "bye", bar: 21, isCheck: false}];
-  *      findValues(newArray, "foo");      //=> ["hello", "bye"];
+  *   const answer = pipe(
+  *      dateTime.prepSec,
+  *      (date) => dateTime.addHours(date, 2),
+  *      dateTime.getTime
+  *    )(7200)
+  *      //=> 
+  *     {
+  *        hr: "04",
+  *        min: "00",
+  *        sec: "00"
+  *     }
+  * 
   */
-const findValues = (array: any[], key: string, errorMod: boolean = false): string[] | null => {
-  let answer: any = undefined;
-  let err: any = null;
-  try {
-    if (is(Array, array)) {
-      answer = array.map((el) => {
-        const item: any = pickAll([key], el);
-        return values(item)[0];
-      })
-    } else {
-      answer = null;
-    }
-  } catch (error) {
-    err = error;
-  }
-  return errorWrapper(err, answer, errorMod)
-};
 
-export { findValues };</code></pre>
+
+const addHours = curry((date: Date = new Date(), h: number = 0, errMod = false) => {
+  let answer: any = undefined;
+  let error: any = null;
+  try {
+    answer = date.setHours(date.getHours() + h);
+  } catch (err) {
+    error = err;
+  }
+  return errorWrapper(error, answer, errMod);
+});
+
+export { addHours };</code></pre>
         </article>
     </section>
 

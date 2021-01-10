@@ -1,5 +1,6 @@
+/// <reference types="ts-toolbelt" />
 export declare const dateTime: {
-    addHours: (date: any, h: any) => any;
+    addHours: import("Function/Curry").Curry<(date?: Date, h?: number, errMod?: any) => any>;
     formatDate: (t: any) => string | number;
     formateDateToString: (date: any) => any;
     formatTime: (t: any) => string;
@@ -8,6 +9,12 @@ export declare const dateTime: {
         day: any;
         year: any;
     };
+    getTime: (date: any) => {
+        hr: string;
+        min: string;
+        sec: string;
+    };
     isDate: (date: any) => boolean;
     reformate: (date: any, format: never) => string;
+    prepSec: (sec?: number, errorMod?: boolean) => Date | import("../errorWrapper/errorWrapper").iError;
 };
