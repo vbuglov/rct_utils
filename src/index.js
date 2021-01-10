@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generator = exports.validators = exports.dateTime = exports.AOO = void 0;
+exports.store = exports.generator = exports.validators = exports.dateTime = exports.AOO = void 0;
 const object_1 = require("./array/object");
 Object.defineProperty(exports, "AOO", { enumerable: true, get: function () { return object_1.AOO; } });
 const dateTime_1 = require("./dateTime");
@@ -9,3 +9,5 @@ const validators_1 = require("./validators");
 Object.defineProperty(exports, "validators", { enumerable: true, get: function () { return validators_1.validators; } });
 const generator_1 = require("./generator");
 Object.defineProperty(exports, "generator", { enumerable: true, get: function () { return generator_1.generator; } });
+const store_1 = require("./store");
+Object.defineProperty(exports, "store", { enumerable: true, get: function () { return store_1.store; } });

@@ -13,7 +13,8 @@ import errorWrapper, { iError } from "../errorWrapper/errorWrapper";
   * 
   *    const answer = dateTime.prepSec(60);
   *    dateTime.getTime(answer);
-  *     // => {
+  *     // => 
+  *      {
   *        hr: "00",
   *        min: "01",
   *        sec: "00"

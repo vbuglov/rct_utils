@@ -1,3 +1,4 @@
+//@ts-ignore
 import aesjs from "aes-js";
 import { slice, curry } from "ramda";
 import { parseKey } from "./parseKey";

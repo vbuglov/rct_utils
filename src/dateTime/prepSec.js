@@ -15,7 +15,8 @@ const errorWrapper_1 = require("../errorWrapper/errorWrapper");
   *
   *    const answer = dateTime.prepSec(60);
   *    dateTime.getTime(answer);
-  *     // => {
+  *     // =>
+  *      {
   *        hr: "00",
   *        min: "01",
   *        sec: "00"
