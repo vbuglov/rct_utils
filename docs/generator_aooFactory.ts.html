@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> array/object/pUpdate.ts</title>
+  <title> generator/aooFactory.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>array/object/pUpdate.ts</h1>
+                    <h1>generator/aooFactory.ts</h1>
                 </header>
                 
 
@@ -89,136 +89,71 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { update } from "./update"
-import { is, cond, T, isEmpty } from "ramda";
-import errorWrapper from "../../errorWrapper/errorWrapper";
+            <pre class="prettyprint source linenums"><code>import errorWrapper from '../errorWrapper/errorWrapper';
+import { iError } from '../errorWrapper/errorWrapper';
 
 /**
-  * Функция возвращает обновленную коллекцию по переданному пути
+  * Функция гененрирует массив по переданному слепку
   *
-  * @category ArrayOfObjects
+  * @category generator
   * @method
   * @since v0.1.0
-  * @param { Array | Object } collection - коллекция в виде массива или объекта
-  * @param { Array } keys - путь по которому будет проиходить обновление. Путь массив если следующий шаг объект, то путь имя ключа объекта, либо массив [*String -> имя ключа объекта*, значение]
-  * @param { Object } newData - новое значение
-  * @return { Array | Object }
+  * @param  {array} snapshot - слепок по которому будет идти генерация
+  * @param  {number} amount - необходимое количество элементов в массиве
+  * @return {array}
+  * 
   * @example
-  *  
-  * const object = {
-  *  quantifying: {
-  *    Towels: [
-  *      { feed: {}, id: 1 },
-  *      { id: 2 },
-  *      { id: 3 },
-  *      { Chair: "Reyes.Lebsack@hotmail.com", Oklahoma: {}, id: 4 },
-  *      { utilize: {}, engage: "747-776-1611", id: 5 }
-  *    ],
-  *    Electronics: "239-934-8977 x1217",
-  *    Assurance: { Configurable: "607-385-4573 x0039" }
-  *  }
-  * };
+  *   faker.seed(123);
   * 
-  * AOO.pUpdate(object, ["quantifying", "Towels", ["id", 4], "Chair"], * "friend@gmail.com");
-  *  //=>
-  *   ({
-  *    quantifying: {
-  *      Towels: [
-  *        { feed: {}, id: 1 },
-  *        { id: 2 },
-  *        { id: 3 },
-  *        { Chair: "friend@gmail.com", Oklahoma: {}, id: 4 },
-  *        { utilize: {}, engage: "747-776-1611", id: 5 }
-  *      ],
-  *      Electronics: "239-934-8977 x1217",
-  *      Assurance: { Configurable: "607-385-4573 x0039" }
-  *    }
-  *  });
-  * 
-  * const array = [
-  *  {
-  *    id: 2,
-  *    gnom: 222
-  *  },
-  *  {
-  *    id: 4,
-  *    gnom: {
-  *      c: [
-  *        { id: 1, c: 2 },
-  *        { id: 2, b: 2 },
-  *        { id: 4, v: 2 }
-  *      ],
-  *      a: 3
-  *    }
-  *  }
-  * ];
-  * 
-  *   * AOO.pUpdate(array, [["id", 4], "gnom", "c", ["id", 2], "b"], { c:  2, d: 3 });
-  *  
-  * //=>
-  *  [
-  *    { id: 2, gnom: 222 },
+  *   const snapshotExample = [{
+  *     key: "id",
+  *     fn: faker.random.number,
+  *     params: [100]
+  *    },
   *    {
-  *      id: 4,
-  *      gnom: {
-  *        c: [
-  *          { id: 1, c: 2 },
-  *          { id: 2, b: { c: 2, d: 3 } },
-  *          { id: 4, v: 2 }
-  *        ],
-  *        a: 3
-  *      }
-  *    }
-  *  ])
-  * };
- */
+  *     key: "name",
+  *     fn: faker.address.zipCode,
+  *     params: []
+  *    },
+  *    {
+  *     key: "county",
+  *     fn: faker.address.county,
+  *     params: []
+  *    }];
+  * 
+  *   const answer = objFaker(snapshotExample, 10); //=>
+  *   [
+  *    { county: "Buckinghamshire", id: 70, name: "24265-7744" },
+  *    { county: "Berkshire", id: 99, name: "65413" },
+  *    { county: "Borders", id: 34, name: "73420-6357" },
+  *    { county: "Berkshire", id: 18, name: "10575" },
+  *    { county: "Berkshire", id: 64, name: "84776" },
+  *    { county: "Bedfordshire", id: 72, name: "36332" },
+  *    { county: "Avon", id: 29, name: "67074-0414" },
+  *    { county: "Buckinghamshire", id: 43, name: "38478" },
+  *    { county: "Buckinghamshire", id: 95, name: "54651-3344" },
+  *    { county: "Buckinghamshire", id: 87, name: "21449-2546" }
+  *   ]
+  * 
+  */
 
-const pUpdate = (collection: any, keys: any[], newData: any, errorMod: boolean = false): any => {
+export const aooFactory = (snapshot: any[], amount: number, errorMod = false): undefined | iError | Array&lt;Object> => {
   let answer: any = undefined;
-  let err: any = null;
+  let error: any = null;
   try {
-    answer = cond([
-      [() => isEmpty(keys), () => {
-        return newData
-      }],
-      [
-        (el) => is(Array, el),
-        (el) => {
-          const key = keys[0];
-          if (is(Array, key)) {
-            const workArray = el.find((el: any) => (el[key[0]] === key[1]));
-            return update(
-              collection,
-              { key: key[0], value: key[1] },
-              pUpdate(workArray, keys.slice(1), newData)
-            );
-          }
-          else {
-            const workArray = el.find((el: any) => (el[key[0]] === key[1]));
-            return update(
-              collection,
-              { key: keys[0], value: keys[1] },
-              pUpdate(workArray, keys.slice(1), newData)
-            );
-          }
-        }
-      ],
-      [
-        (el) => is(Object, el),
-        (el) => {
-          const key = keys[0];
-          return { ...el, [key]: pUpdate(el[key], keys.slice(1), newData) };
-        }
-      ],
-      [T, () => collection]
-    ])(collection);
-  } catch (error) {
-    err = error;
+    let array: any[] = [];
+    for (let i = 0; i &lt; amount; i++) {
+      const newObj = snapshot.reduce((acc: any, cur: any) => {
+        return { ...acc, [cur.key]: cur.fn(...cur.params) };
+      }, {});
+      array = [...array, newObj];
+    }
+    answer = array;
+  } catch (err) {
+    error = err
   }
-  return errorWrapper(err, answer, errorMod);
-};
-
-export { pUpdate };</code></pre>
+  return errorWrapper(error, answer, errorMod)
+};</code></pre>
         </article>
     </section>
 

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.decrypte = void 0;
+//@ts-ignore
 const aes_js_1 = require("aes-js");
 const ramda_1 = require("ramda");
 const parseKey_1 = require("./parseKey");
