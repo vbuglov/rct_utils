@@ -28,7 +28,7 @@ import { iError } from '../errorWrapper/errorWrapper';
   *     params: []
   *    }];
   *
-  *   const answer = objFaker(snapshotExample, 10); //=>
+  *   const answer =  generator.aooFactory(snapshotExample, 10); //=>
   *   [
   *    { county: "Buckinghamshire", id: 70, name: "24265-7744" },
   *    { county: "Berkshire", id: 99, name: "65413" },

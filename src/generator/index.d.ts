@@ -4,4 +4,5 @@ export declare const generator: {
     objectGenerator: (reserve: number) => any;
     random: (max?: number) => number;
     randomElement: (reserve: number) => any;
+    rKey: () => string;
 };
