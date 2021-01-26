@@ -1,5 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.lowFirst = void 0;
 /* eslint-disable quotes */
-import { type } from 'ramda'
+const ramda_1 = require("ramda");
 /* eslint-disable import/prefer-default-export */
 /**
   * Функция обрезает строку до необходимого количества символов, если в этом есть необходимость
@@ -14,11 +17,10 @@ import { type } from 'ramda'
   *
   *      masks.lwFirstLett('String') //=> 'string'
   */
-const lowFirst = (string: string): string => {
-  if (string && string[0] && type(string) === "String") return string[0].toLowerCase() + string.slice(1);
-
-  const error = `error by func lowerFirstLetter, ivalid string. string can't equal ${string}`
-  return error;
+const lowFirst = (string) => {
+    if (string && string[0] && ramda_1.type(string) === "String")
+        return string[0].toLowerCase() + string.slice(1);
+    const error = `error by func lowerFirstLetter, ivalid string. string can't equal ${string}`;
+    return error;
 };
-
-export { lowFirst };
+exports.lowFirst = lowFirst;

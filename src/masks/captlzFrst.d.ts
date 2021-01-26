@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /**
   * Функция возвращает строку где первый символ становится заглавным
   *
@@ -11,10 +10,5 @@
   *
   *      masks.lwFirstLett('string') //=> 'String'
   */
-const captlzFrst = (string: string): string => {
-  if (string) return string.charAt(0).toUpperCase() + string.slice(1);
-  const error = `error by func capitalizeFirstLetter, ivalid string. string can't equal ${string}`;
-  return error;
-}
-
-export { captlzFrst }
+declare const captlzFrst: (string: string) => string;
+export { captlzFrst };

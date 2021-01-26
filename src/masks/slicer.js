@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.slicer = void 0;
 /* eslint-disable import/prefer-default-export */
 /**
   * Функция обрезает строку до необходимого количества символов, если в этом есть необходимость
@@ -13,9 +16,10 @@
   *      masks.slicer("hellow world", 3)
 *       // => "hel"
   */
-export const slicer = (string: string, length = 40) => {
-  if (string && string.length > length) {
-    return `${string.substring(0, length)}...`;
-  }
-  return string;
-}
+const slicer = (string, length = 40) => {
+    if (string && string.length > length) {
+        return `${string.substring(0, length)}...`;
+    }
+    return string;
+};
+exports.slicer = slicer;

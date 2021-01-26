@@ -9,13 +9,4 @@
   *
   *      const numStr = masks.wrapNumMsk('123abc456'); //=> 123456
   */
-export const wrapNumMsk = (value: string): string => {
-  if (value === '' || !value) return '';
-  const num = /[0-9]/g;
-  //@ts-ignore
-  let str = value.match(num).join('');
-  if (str) {
-    return str;
-  }
-  return '';
-}
+export declare const wrapNumMsk: (value: string) => string;

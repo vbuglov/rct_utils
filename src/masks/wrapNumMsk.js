@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.wrapNumMsk = void 0;
 /**
   * Функция преобразовывает строку, в строку, в которой содержаться только числа
   * @category masks
@@ -9,13 +12,15 @@
   *
   *      const numStr = masks.wrapNumMsk('123abc456'); //=> 123456
   */
-export const wrapNumMsk = (value: string): string => {
-  if (value === '' || !value) return '';
-  const num = /[0-9]/g;
-  //@ts-ignore
-  let str = value.match(num).join('');
-  if (str) {
-    return str;
-  }
-  return '';
-}
+const wrapNumMsk = (value) => {
+    if (value === '' || !value)
+        return '';
+    const num = /[0-9]/g;
+    //@ts-ignore
+    let str = value.match(num).join('');
+    if (str) {
+        return str;
+    }
+    return '';
+};
+exports.wrapNumMsk = wrapNumMsk;

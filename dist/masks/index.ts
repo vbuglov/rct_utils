@@ -3,7 +3,7 @@ import { captlzFrst } from './captlzFrst';
 import { lowFirst } from './lowFirst';
 import { slicer } from './slicer';
 
-export const mask = {
+export const masks = {
   lowFirst,
   captlzFrst,
   wrapNumMsk,

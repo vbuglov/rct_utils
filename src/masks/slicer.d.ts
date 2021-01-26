@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /**
   * Функция обрезает строку до необходимого количества символов, если в этом есть необходимость
   *
@@ -13,9 +12,4 @@
   *      masks.slicer("hellow world", 3)
 *       // => "hel"
   */
-export const slicer = (string: string, length = 40) => {
-  if (string && string.length > length) {
-    return `${string.substring(0, length)}...`;
-  }
-  return string;
-}
+export declare const slicer: (string: string, length?: number) => string;

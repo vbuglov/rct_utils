@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /**
   * Функция обрезает строку до необходимого количества символов, если в этом есть необходимость
   *
@@ -10,12 +9,7 @@
   * @return {string}
   * @example
   *
-  *      masks.slicer("hellow world", 3)
-*       // => "hel"
+  *      masks.lwFirstLett('String') //=> 'string'
   */
-export const slicer = (string: string, length = 40) => {
-  if (string && string.length > length) {
-    return `${string.substring(0, length)}...`;
-  }
-  return string;
-}
+declare const lowFirst: (string: string) => string;
+export { lowFirst };
