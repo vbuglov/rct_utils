@@ -4,7 +4,7 @@
     "Vyacheslav Buglov <v.a.buglov@gmail.com> (https://buglov.ru/)"
   ],
   "name": "@dev-bi/rct_utils",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {

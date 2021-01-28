@@ -17,9 +17,9 @@ const wrapNumMsk = (value) => {
         return '';
     const num = /[0-9]/g;
     //@ts-ignore
-    let str = value.match(num).join('');
+    let str = value.match(num);
     if (str) {
-        return str;
+        return str.join('');
     }
     return '';
 };
