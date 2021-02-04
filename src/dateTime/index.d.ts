@@ -17,4 +17,5 @@ export declare const dateTime: {
     isDate: (date: any) => boolean;
     reformate: (date: any, format: never) => string;
     prepSec: (sec?: number, errorMod?: boolean) => Date | import("../errorWrapper/errorWrapper").iError;
+    parse: (date?: Date, symbol?: string, mode?: string) => string;
 };

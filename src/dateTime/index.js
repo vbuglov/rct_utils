@@ -10,6 +10,7 @@ const isDate_1 = require("./isDate");
 const reformate_1 = require("./reformate");
 const prepSec_1 = require("./prepSec");
 const getTime_1 = require("./getTime");
+const parse_1 = require("./parse");
 exports.dateTime = {
     addHours: addHours_1.addHours,
     formatDate: formatDate_1.formatDate,
@@ -19,5 +20,6 @@ exports.dateTime = {
     getTime: getTime_1.getTime,
     isDate: isDate_1.isDate,
     reformate: reformate_1.reformate,
-    prepSec: prepSec_1.prepSec
+    prepSec: prepSec_1.prepSec,
+    parse: parse_1.parse
 };

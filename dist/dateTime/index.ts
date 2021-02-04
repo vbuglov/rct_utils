@@ -7,6 +7,7 @@ import { isDate } from './isDate';
 import { reformate } from './reformate';
 import { prepSec } from './prepSec';
 import { getTime } from './getTime'
+import { parse } from './parse'
 
 export const dateTime = {
   addHours,
@@ -17,5 +18,6 @@ export const dateTime = {
   getTime,
   isDate,
   reformate,
-  prepSec
+  prepSec,
+  parse
 }
