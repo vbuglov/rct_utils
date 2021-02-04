@@ -18,13 +18,13 @@ const parse = (date = new Date(), symbol = '.', mode = 'DateDMY') => {
             dateBits[key] = '0' + dateBits[key];
     });
     switch (mode) {
-        case 'DateDMY':
+        case 'DMY':
             return dateBits.day + symbol + dateBits.month + symbol + dateBits.year;
-        case 'DateDM':
+        case 'DM':
             return dateBits.day + symbol + dateBits.month;
-        case 'DateYMD':
+        case 'YMD':
             return dateBits.year + symbol + dateBits.month + symbol + dateBits.day;
-        case 'DateDMYHM':
+        case 'DMYHM':
             return (dateBits.day +
                 symbol +
                 dateBits.month +
@@ -34,7 +34,7 @@ const parse = (date = new Date(), symbol = '.', mode = 'DateDMY') => {
                 dateBits.hours +
                 ':' +
                 dateBits.minutes);
-        case 'DateYMDHM':
+        case 'YMDHM':
             return (dateBits.year +
                 symbol +
                 dateBits.month +
@@ -50,7 +50,7 @@ const parse = (date = new Date(), symbol = '.', mode = 'DateDMY') => {
                 dateBits.minutes +
                 ':' +
                 dateBits.seconds);
-        case 'DateHM':
+        case 'HM':
             return dateBits.hours + ':' + dateBits.minutes;
         default:
             return dateBits.day + symbol + dateBits.month + symbol + dateBits.year;
