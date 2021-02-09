@@ -38,3 +38,10 @@ describe('tests of addHours function', () => {
     })
   });
 });
+
+describe('tests of parse function', () => {
+  test('check test', () => {
+    const answer = dateTime.parse(new Date('2025-02-03'), '-', 'DMY')
+    expect(answer).toEqual('03-02-2025');
+  });
+});

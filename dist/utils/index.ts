@@ -6,6 +6,7 @@ import { stringify } from './stringify';
 import { trim } from './trim';
 import { encrypt } from './encrypt';
 import { decrypte } from './decrypte';
+import { isUpperCase } from './isUpperCase';
 
 export const utils = {
   parse,
@@ -14,5 +15,6 @@ export const utils = {
   stringify,
   trim,
   decrypte,
-  encrypt
+  encrypt,
+  isUpperCase
 }

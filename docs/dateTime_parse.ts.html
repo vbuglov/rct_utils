@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> dateTime/formatTime.ts</title>
+  <title> dateTime/parse.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>dateTime/formatTime.ts</h1>
+                    <h1>dateTime/parse.ts</h1>
                 </header>
                 
 
@@ -89,18 +89,74 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
-  * Преобразует время к формату с двумя символами
+            <pre class="prettyprint source linenums"><code>import { getDateByType } from './getDateByType';
+
+/**
+  * Преобразовывает дату в строку по указанному формату. Все
   *
   * @category dateTime
   * @method
   * @since v0.1.0
-  * @param {string} t - текст который будет зашифрован
+  * @param {date | string} date - дата которую нужно привести к нужному виду
+  * @param {string} symbol - разделитель для даты
+  * @param {string} mode - мод для преобразования даты, по умоляанию "DMY"
+  * @param {string} tSeparator - разделитель для времени
   * @return {string}
   */
-const formatTime = (t: any) => (`0${t}`).slice(-2);
 
-export { formatTime };</code></pre>
+
+const parse = (date = new Date(), symbol = '.', mode = 'DMY') => {
+  const selfDate = getDateByType(date);
+  let dateBits = {
+    year: selfDate.getFullYear(),
+    month: selfDate.getMonth() + 1,
+    day: selfDate.getDate(),
+    hours: selfDate.getHours(),
+    minutes: selfDate.getMinutes(),
+  };
+  Object.keys(dateBits).forEach((key) => {
+    //@ts-ignore
+    if (dateBits[key] &lt; 10) dateBits[key] = '0' + dateBits[key];
+  });
+  switch (mode) {
+    case 'DMY':
+      return dateBits.day + symbol + dateBits.month + symbol + dateBits.year;
+    case 'DM':
+      return dateBits.day + symbol + dateBits.month;
+    case 'YMD':
+      return dateBits.year + symbol + dateBits.month + symbol + dateBits.day;
+    case 'DMYHM':
+      return (
+        dateBits.day +
+        symbol +
+        dateBits.month +
+        symbol +
+        dateBits.year +
+        ' ' +
+        dateBits.hours +
+        ':' +
+        dateBits.minutes
+      );
+    case 'YMDHM':
+      return (
+        dateBits.year +
+        symbol +
+        dateBits.month +
+        symbol +
+        dateBits.day +
+        ' ' +
+        dateBits.hours +
+        ':' +
+        dateBits.minutes
+      );
+    case 'HM':
+      return dateBits.hours + ':' + dateBits.minutes;
+    default:
+      return dateBits.day + symbol + dateBits.month + symbol + dateBits.year;
+  }
+};
+
+export { parse };</code></pre>
         </article>
     </section>
 

@@ -1,6 +1,20 @@
 import { getDateByType } from './getDateByType';
 
-const parse = (date = new Date(), symbol = '.', mode = 'DateDMY') => {
+/**
+  * Преобразовывает дату в строку по указанному формату. Все
+  *
+  * @category dateTime
+  * @method
+  * @since v0.1.0
+  * @param {date | string} date - дата которую нужно привести к нужному виду
+  * @param {string} symbol - разделитель для даты
+  * @param {string} mode - мод для преобразования даты, по умоляанию "DMY"
+  * @param {string} tSeparator - разделитель для времени
+  * @return {string}
+  */
+
+
+const parse = (date = new Date(), symbol = '.', mode = 'DMY') => {
   const selfDate = getDateByType(date);
   let dateBits = {
     year: selfDate.getFullYear(),
@@ -8,7 +22,6 @@ const parse = (date = new Date(), symbol = '.', mode = 'DateDMY') => {
     day: selfDate.getDate(),
     hours: selfDate.getHours(),
     minutes: selfDate.getMinutes(),
-    seconds: selfDate.getSeconds()
   };
   Object.keys(dateBits).forEach((key) => {
     //@ts-ignore
@@ -44,14 +57,6 @@ const parse = (date = new Date(), symbol = '.', mode = 'DateDMY') => {
         dateBits.hours +
         ':' +
         dateBits.minutes
-      );
-    case 'HMS':
-      return (
-        dateBits.hours +
-        ':' +
-        dateBits.minutes +
-        ':' +
-        dateBits.seconds
       );
     case 'HM':
       return dateBits.hours + ':' + dateBits.minutes;

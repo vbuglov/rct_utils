@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> dateTime/formatTime.ts</title>
+  <title> utils/isUpperCase.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>dateTime/formatTime.ts</h1>
+                    <h1>utils/isUpperCase.ts</h1>
                 </header>
                 
 
@@ -89,18 +89,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
-  * Преобразует время к формату с двумя символами
+            <pre class="prettyprint source linenums"><code>import { is } from 'ramda';
+import errorWrapper from '../errorWrapper/errorWrapper';
+
+/**
+  * Проверяет находится ли строка или символ в верхнем регистре
   *
-  * @category dateTime
+  * @category utils
   * @method
   * @since v0.1.0
-  * @param {string} t - текст который будет зашифрован
-  * @return {string}
+  * @param {string} str - преверяемая строка
+  * @return {boolean}
   */
-const formatTime = (t: any) => (`0${t}`).slice(-2);
 
-export { formatTime };</code></pre>
+const isUpperCase = (str: string, errorMod = false) => {
+  if (!is(String, str)) return false;
+  let answer: any = undefined;
+  let error: any = null;
+  try {
+    answer = str.toUpperCase() === str;
+  } catch (err) {
+    error = err;
+  }
+  return errorWrapper(error, answer, errorMod)
+}
+
+export { isUpperCase };</code></pre>
         </article>
     </section>
 

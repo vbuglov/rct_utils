@@ -13,3 +13,26 @@ describe('tests of decrypte function', () => {
     expect(answer).toEqual("hellow world");
   });
 });
+
+describe('tests of isUpperCase function', () => {
+  test('symbol is not upper', () => {
+    const answer = utils.isUpperCase('s');
+    expect(answer).toEqual(false);
+  });
+  test('symbol is upper', () => {
+    const answer = utils.isUpperCase('S');
+    expect(answer).toEqual(true);
+  });
+  test('string is not upper', () => {
+    const answer = utils.isUpperCase('str');
+    expect(answer).toEqual(false);
+  });
+  test('string is upper', () => {
+    const answer = utils.isUpperCase('STR');
+    expect(answer).toEqual(true);
+  });
+  test('string is mix', () => {
+    const answer = utils.isUpperCase('StR');
+    expect(answer).toEqual(false);
+  });
+});
